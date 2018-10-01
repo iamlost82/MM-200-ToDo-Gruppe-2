@@ -1,0 +1,19 @@
+{
+  "name": "mm-200-todo-gruppe-2",
+  "version": "1.0.0",
+  "description": "MM-200 ToDo List Group 2",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/iamlost82/MM-200-ToDo-Gruppe-2.git"
+  },
+  "author": "Gruppe 2",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/iamlost82/MM-200-ToDo-Gruppe-2/issues"
+  },
+  "homepage": "https://github.com/iamlost82/MM-200-ToDo-Gruppe-2#readme"
+}
