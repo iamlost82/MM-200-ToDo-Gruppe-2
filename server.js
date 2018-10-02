@@ -3,6 +3,8 @@ const bodyParser = require('body-parser');
 const app = express();
 
 const userRoutes = require('./api/routes/users');
+const listRoutes = require('./api/routes/lists');
+const elementRoutes = require('./api/routes/elements');
 
 app.set('port', (process.env.PORT || 8080));
 app.use(express.static('public'));
@@ -12,3 +14,5 @@ app.listen(app.get('port'), function(){
 });
 
 app.use('/api/user',userRoutes);
+app.use('/api/user',listRoutes);
+app.use('/api/user',elementRoutes);
