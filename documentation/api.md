@@ -32,3 +32,20 @@ or
 ```{"msg": "Authentication failed"}```
 
 ---
+
+# JOKE(OBSOBS, justt for demo purpose):
+
+## Return personalized joke template
+### METHOD: GET
+### ENDPOINT: /api/joke
+### RESPONSE SUCCESS(200)(json):
+```"<p>INPNAME: CAPS LOCK – Preventing Login Since 1980.</p>"```
+
+---
+
+## Create new joke
+### METHOD: POST
+### BODY(json):
+```{"body":"<p>Testjoke</p>"}```
+### RESPONSE SUCCESS(200)(json):
+```{"msg": "New joke created"}```
