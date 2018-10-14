@@ -105,7 +105,7 @@ function showCreateUserPage(){
         let userEmail = userEmailInput.value;
         let userPassword = userPasswordInput.value;
         let apiBody = {"name":userName,"email":userEmail,"password":userPassword};
-        let response = await fetch('/api/users/new',
+        let response = await fetch('/api/users',
         {
             method: 'POST',
             headers: {
