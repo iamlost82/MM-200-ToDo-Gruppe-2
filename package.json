@@ -1,7 +1,7 @@
 {
   "name": "mm-200-todo-gruppe-2",
   "version": "1.0.0",
-  "description": "MM-200 ToDo List Group 2",
+  "description": "MM-200 at UiA, fall 2018, semester project Group 2",
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -10,7 +10,7 @@
     "type": "git",
     "url": "git+https://github.com/iamlost82/MM-200-ToDo-Gruppe-2.git"
   },
-  "author": "Gruppe 2",
+  "author": "Otto André Haaland, Hanne Rebecca Nilsen, Mette K. Lund Kristiansen, Bjørn André Fauske Hjelle",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/iamlost82/MM-200-ToDo-Gruppe-2/issues"
@@ -18,6 +18,6 @@
   "homepage": "https://github.com/iamlost82/MM-200-ToDo-Gruppe-2#readme",
   "dependencies": {
     "body-parser": "^1.18.3",
-    "express": "^4.16.3"
+    "express": "^4.16.4"
   }
 }
