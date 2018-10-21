@@ -3,24 +3,18 @@ const connectionString = process.env.DATABASE_URL;
 
 const db = {};
 
-function runQuery(query){
+async function runQuery(query){
     let response = null;
     const client = new Client({connectionString: connectionString, ssl:true});
 
     try{
-        client.connect();
-        if(client){
-            client.query(query, (err,res) => {
-                if(err) throw err;
-                console.log(res);
-                response = res.rows;
-                client.end();
-            });
-        };
+        await client.connect();
+        response = await client.query(query);
+        response = response.rows;
     } catch (e) { 
         console.log(e);
     }
-
+    console.log(response);
     return response;
 }
 
