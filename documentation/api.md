@@ -20,6 +20,7 @@
 }
 ```
 ### RESPONSE SUCCESS(201)(json):
+```javascript
 [
 	{
 		"userid": 1,
@@ -30,15 +31,19 @@
 		"active": 1
 	}
 ]
+```
 ### RESPONSE ERROR(500)(json):
+```javascript
 {
     "msg": "Key (username)=(Mr.Fluffy) already exists."
 }
+```
 
 ## Update user
 ### METHOD: PUT
 ### ENDPOINT: /api/user
 ### BODY(json):
+```javascript
 {
     "userid":"1",
     "username":"Mr.Fluffy",
@@ -46,7 +51,9 @@
     "userrole":"1",
     "userpwplain":"123456789"
 }
+```
 ### RESPONSE SUCCESS(200)(json):
+```javascript
 [
 	{
 		"userid": 1,
@@ -57,31 +64,41 @@
 		"active": 1
 	}
 ]
+```
 ### RESPONSE ERROR(500)(json):
+```javascript
 {
 	"msg": "Something went wrong"
 }
+```
 
 ## Delete(disable) user
 ### METHOD: DELETE
 ### ENDPOINT: /api/user
 ### BODY(json):
+```javascript
 {
 	"userid":"1"
 }
+```
 ### RESPONSE SUCCESS(200)(json):
+```javascript
 {
 	"msg": "User deleted"
 }
+```
 ### RESPONSE ERROR(500)(json):
+```javascript
 {
 	"msg": "Something went wrong"
 }
+```
 
 ## List users
 ### METHOD: GET
 ### ENDPOINT: /api/users
 ### RESPONSE SUCCESS(200)(json):
+```javascript
 [
 	{
 		"userid": 1,
@@ -92,7 +109,10 @@
 		"active": 1
 	}
 ]
+```
 ### RESPONSE ERROR(500)(json):
+```javascript
 {
 	"msg": "Something went wrong"
 }
+```
