@@ -17,7 +17,9 @@
   },
   "homepage": "https://github.com/iamlost82/MM-200-ToDo-Gruppe-2#readme",
   "dependencies": {
+    "bcrypt": "^3.0.2",
     "body-parser": "^1.18.3",
-    "express": "^4.16.4"
+    "express": "^4.16.4",
+    "pg": "^7.5.0"
   }
 }
