@@ -11,12 +11,14 @@
 ### METHOD: POST
 ### ENDPOINT: /api/user
 ### BODY(json):
+```javascript
 {
     "username":"Mr.Fluffy",
     "useremail":"fluffy@uia.no",
     "userrole":"1",
     "userpwplain":"123456789"
 }
+```
 ### RESPONSE SUCCESS(201)(json):
 [
 	{
