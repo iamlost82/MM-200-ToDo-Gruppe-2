@@ -10,11 +10,9 @@ async function runQuery(query){
     try{
         await client.connect();
         response = await client.query(query);
-        response = response.rows;
     } catch (e) { 
-        console.log(e);
+        response = e;
     }
-    console.log(response);
     return response;
 }
 
