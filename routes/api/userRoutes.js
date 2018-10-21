@@ -12,7 +12,7 @@ router.post('/api/user', function(req,res,next){
         let userpwhash = hash;
         let query = `INSERT INTO users(username,useremail,userrole,userpwhash) 
                      VALUES('${username}','${useremail}','${userrole}','${userpwhash}') 
-                     RETURNING userid,username,useremail,userrole,userpwhash`;
+                     RETURNING userid,username,useremail,userrole,userpwhash,active`;
         let queryresult = await db.insert(query);
         let response = {status:501, result: 'Sorry, request failed'};
         if(queryresult.detail){
@@ -43,7 +43,7 @@ router.put('/api/user',function(req,res,next){
                                                 "userrole" = ${userrole},
                                                 "userpwhash" = '${userpwhash}' 
                     WHERE userid = ${userid} 
-                    RETURNING userid,username,useremail,userrole,userpwhash`;
+                    RETURNING userid,username,useremail,userrole,userpwhash,active`;
         let queryresult = await db.insert(query);
         let response = {status:500, result: {msg:'Something went wrong'}};
         if(queryresult.detail){
@@ -60,7 +60,10 @@ router.put('/api/user',function(req,res,next){
 
 router.delete('/api/user', async function(req,res,next){
     let userid = req.body.userid;
-    let query = `DELETE FROM "public"."users" WHERE userid = ${userid}`;
+    //let query = `DELETE FROM "public"."users" WHERE userid = ${userid}`;
+    let query = `UPDATE "public"."users" SET "active" = 0
+    WHERE userid = ${userid} 
+    RETURNING userid,username,useremail,userrole,userpwhash,active`;
     let queryresult = await db.delete(query);
     let response = {status: 500, result: {msg:'Something went wrong'}};
     if(queryresult.detail){
