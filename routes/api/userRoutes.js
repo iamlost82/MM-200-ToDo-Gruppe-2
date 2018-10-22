@@ -27,8 +27,17 @@ router.post('/api/user', function(req,res,next){
     });
 });
 
-router.post('/api/user/auth', function(req,res,next){
-
+router.post('/api/user/auth', async function(req,res,next){
+    let match = null;
+    let username = req.body.username;
+    let password = req.body.password;
+    let query = `SELECT "userpwhash" from "public"."users" WHERE "username" = '${username}'`;
+    let queryresult = await db.select(query);
+    if(queryresult.rowCount === 1){
+        match = await bcrypt.compare(password, queryresult.rows[0].userpwhash);
+    }
+    res.status(200).json({returned: match});
+    
 });
 
 router.put('/api/user',function(req,res,next){
