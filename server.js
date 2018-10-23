@@ -2,7 +2,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const app = express();
 
-const userRoutes = require('./routes/api/userRoutes.js');
+const userRoutes = require('./controller/routes/api/userRoutes');
 
 app.set('port', (process.env.PORT || 8080));
 app.use(express.static('public'));
