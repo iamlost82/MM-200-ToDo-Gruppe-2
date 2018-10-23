@@ -1,10 +1,28 @@
-# API Documentation
+# API Dokumentasjon
 
 ---
 
-[Back to main page](https://github.com/iamlost82/MM-200-ToDo-Gruppe-2)
+[Tilbake til hovedside](https://github.com/iamlost82/MM-200-ToDo-Gruppe-2)
 
 ---
+
+#USERS
+
+Create new user
+|------------:|:------------|
+|METHOD:	  |POST		    |
+|ENDPOINT:	  |/api/user	|
+|BODY:(json):				|
+|```javascript
+{
+    "username":"Mr.Fluffy",
+    "email":"fluffy@uia.no",
+    "password":"123456789"
+}
+```|
+|---|---|
+
+
 # USERS:
 
 ## Create new user
