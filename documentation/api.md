@@ -14,28 +14,36 @@
 ```javascript
 {
     "username":"Mr.Fluffy",
-    "useremail":"fluffy@uia.no",
-    "userrole":"1",
-    "userpwplain":"123456789"
+    "email":"fluffy@uia.no",
+    "password":"123456789"
 }
 ```
 ### RESPONSE SUCCESS(201)(json):
 ```javascript
-[
-	{
-		"userid": 1,
-		"username": "Mr.Fluffy",
-		"useremail": "fluffy@uia.no",
-		"userrole": 1,
-		"userpwhash": "$2b$10$cYHJsoDIEXkKONbH2OiFR.OJq4wtgK3FXm60H7q2CuT.fIfq5yGNq",
-		"active": 1
-	}
-]
+{
+	"rowCount": 1,
+	"rows": [
+		{
+			"userid": "1",
+			"username": "Mr.Fluffy",
+			"email": "fluffy@uia.no",
+			"userrole": 1,
+			"active": 0,
+			"pwhash": "$2b$10$usoYfIy4/OR5Qcal7bk2.e983hY6NK6JKn33rTlTRqFOJFDYooBeu"
+		}
+	]
+}
 ```
 ### RESPONSE ERROR(500)(json):
 ```javascript
 {
-    "msg": "Key (username)=(Mr.Fluffy) already exists."
+	error:'Saving to database failed'
+}
+```
+### RESPONSE ERROR(400)(json):
+```javascript
+{
+	error:'Error in input data, read API documentation'
 }
 ```
 
@@ -47,28 +55,36 @@
 {
     "userid":"1",
     "username":"Mr.Fluffy",
-    "useremail":"fluffy@uia.no",
-    "userrole":"1",
-    "userpwplain":"123456789"
+    "email":"fluffy@uia.no",
+    "password":"123456789"
 }
 ```
 ### RESPONSE SUCCESS(200)(json):
 ```javascript
-[
-	{
-		"userid": 1,
-		"username": "Mr.Fluffy",
-		"useremail": "fluffy@uia.no",
-		"userrole": 1,
-		"userpwhash": "$2b$10$vo91/3LmcXY5zIFaEaWAvesXCtLWFciEUiRHX7qeY6oUWwwLDB85e",
-		"active": 1
-	}
-]
+{
+	"rowCount": 1,
+	"rows": [
+		{
+			"userid": "1",
+			"username": "Mr.Fluffy",
+			"email": "fluffy@uia.no",
+			"userrole": 1,
+			"active": 0,
+			"pwhash": "$2b$10$usoYfIy4/OR5Qcal7bk2.e983hY6NK6JKn33rTlTRqFOJFDYooBeu"
+		}
+	]
+}
 ```
 ### RESPONSE ERROR(500)(json):
 ```javascript
 {
-	"msg": "Something went wrong"
+	error:'Saving to database failed'
+}
+```
+### RESPONSE ERROR(400)(json):
+```javascript
+{
+	error:'Error in input data, read API documentation'
 }
 ```
 
@@ -84,13 +100,29 @@
 ### RESPONSE SUCCESS(200)(json):
 ```javascript
 {
-	"msg": "User deleted"
+	"rowCount": 1,
+	"rows": [
+		{
+			"userid": "1",
+			"username": "Mr.Fluffy",
+			"email": "fluffy@uia.no",
+			"userrole": 1,
+			"active": 0,
+			"pwhash": "$2b$10$usoYfIy4/OR5Qcal7bk2.e983hY6NK6JKn33rTlTRqFOJFDYooBeu"
+		}
+	]
 }
 ```
 ### RESPONSE ERROR(500)(json):
 ```javascript
 {
-	"msg": "Something went wrong"
+	error:'Saving to database failed'
+}
+```
+### RESPONSE ERROR(400)(json):
+```javascript
+{
+	error:'Error in input data, read API documentation'
 }
 ```
 
@@ -99,20 +131,23 @@
 ### ENDPOINT: /api/users
 ### RESPONSE SUCCESS(200)(json):
 ```javascript
-[
-	{
-		"userid": 1,
-		"username": "Mr.Fluffy",
-		"useremail": "fluffy@uia.no",
-		"userrole": 1,
-		"userpwhash": "$2b$10$RaaD3pSiCTvWXXhSSUQbR.nOynasUFXKCYUFaxAeYEqEmEOZhNOxK",
-		"active": 1
-	}
-]
+{
+	"rowCount": 1,
+	"rows": [
+		{
+			"userid": "1",
+			"username": "Mr.Fluffy",
+			"email": "fluffy@uia.no",
+			"userrole": 1,
+			"active": 0,
+			"pwhash": "$2b$10$usoYfIy4/OR5Qcal7bk2.e983hY6NK6JKn33rTlTRqFOJFDYooBeu"
+		}
+	]
+}
 ```
 ### RESPONSE ERROR(500)(json):
 ```javascript
 {
-	"msg": "Something went wrong"
+	error:'Error in action on database'
 }
 ```
