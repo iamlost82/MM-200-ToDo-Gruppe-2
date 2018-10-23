@@ -1,34 +1,17 @@
 # API Dokumentasjon
 
----
-
 [Tilbake til hovedside](https://github.com/iamlost82/MM-200-ToDo-Gruppe-2)
 
 ---
 
-#USERS
+## USERS
 
-Create new user
-|------------:|:------------|
-|METHOD:	  |POST		    |
-|ENDPOINT:	  |/api/user	|
-|BODY:(json):				|
-|```javascript
-{
-    "username":"Mr.Fluffy",
-    "email":"fluffy@uia.no",
-    "password":"123456789"
-}
-```|
-|---|---|
+### Create new user
 
+* METHOD: POST
+* ENDPOINT: /api/user
+* BODY(json):
 
-# USERS:
-
-## Create new user
-### METHOD: POST
-### ENDPOINT: /api/user
-### BODY(json):
 ```javascript
 {
     "username":"Mr.Fluffy",
@@ -36,7 +19,9 @@ Create new user
     "password":"123456789"
 }
 ```
-### RESPONSE SUCCESS(201)(json):
+
+* RESPONSE SUCCESS(201)(json):
+
 ```javascript
 {
 	"rowCount": 1,
@@ -52,7 +37,8 @@ Create new user
 	]
 }
 ```
-### RESPONSE ERROR(500)(json):
+
+* RESPONSE ERROR(500)(json):
 ```javascript
 {
 	error:'Saving to database failed'
