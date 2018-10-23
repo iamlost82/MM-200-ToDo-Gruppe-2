@@ -44,7 +44,8 @@
 	error:'Saving to database failed'
 }
 ```
-### RESPONSE ERROR(400)(json):
+
+* RESPONSE ERROR(400)(json):
 ```javascript
 {
 	error:'Error in input data, read API documentation'
@@ -52,9 +53,11 @@
 ```
 
 ## Update user
-### METHOD: PUT
-### ENDPOINT: /api/user
-### BODY(json):
+
+* METHOD: PUT
+* ENDPOINT: /api/user
+* BODY(json):
+
 ```javascript
 {
     "userid":"1",
@@ -63,7 +66,9 @@
     "password":"123456789"
 }
 ```
-### RESPONSE SUCCESS(200)(json):
+
+* RESPONSE SUCCESS(200)(json):
+
 ```javascript
 {
 	"rowCount": 1,
@@ -79,13 +84,17 @@
 	]
 }
 ```
-### RESPONSE ERROR(500)(json):
+
+* RESPONSE ERROR(500)(json):
+
 ```javascript
 {
 	error:'Saving to database failed'
 }
 ```
-### RESPONSE ERROR(400)(json):
+
+* RESPONSE ERROR(400)(json):
+
 ```javascript
 {
 	error:'Error in input data, read API documentation'
@@ -93,15 +102,19 @@
 ```
 
 ## Delete(disable) user
-### METHOD: DELETE
-### ENDPOINT: /api/user
-### BODY(json):
+
+* METHOD: DELETE
+* ENDPOINT: /api/user
+* BODY(json):
+
 ```javascript
 {
 	"userid":"1"
 }
 ```
-### RESPONSE SUCCESS(200)(json):
+
+* RESPONSE SUCCESS(200)(json):
+
 ```javascript
 {
 	"rowCount": 1,
@@ -117,13 +130,17 @@
 	]
 }
 ```
-### RESPONSE ERROR(500)(json):
+
+* RESPONSE ERROR(500)(json):
+
 ```javascript
 {
 	error:'Saving to database failed'
 }
 ```
-### RESPONSE ERROR(400)(json):
+
+* RESPONSE ERROR(400)(json):
+
 ```javascript
 {
 	error:'Error in input data, read API documentation'
@@ -131,9 +148,11 @@
 ```
 
 ## List users
-### METHOD: GET
-### ENDPOINT: /api/users
-### RESPONSE SUCCESS(200)(json):
+
+* METHOD: GET
+* ENDPOINT: /api/users
+* RESPONSE SUCCESS(200)(json):
+
 ```javascript
 {
 	"rowCount": 1,
@@ -149,7 +168,9 @@
 	]
 }
 ```
-### RESPONSE ERROR(500)(json):
+
+* RESPONSE ERROR(500)(json):
+
 ```javascript
 {
 	error:'Error in action on database'
