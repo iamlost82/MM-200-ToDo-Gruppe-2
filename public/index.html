@@ -24,6 +24,7 @@
                 </form>
                 <h2 id="showRegisterAccountLink">Don't have an account? Click here!</h2>
                 <h2 id="showForgotPasswordLink">Forgot password? Click here!</h2>
+                <div id="errorMsg"></div>
             </div>
             <div id="login-footer"></div>
         </div>
@@ -33,23 +34,39 @@
             <div id="login-header"></div>
             <div id="login-form">
                 <form>
-                <input class="login-field" id="name" type="text" placeholder="Name" autocomplete="name">
-                <input class="login-field" id="email" type="email" placeholder="Email" autocomplete="email">
+                <input class="login-field" id="name" type="text" placeholder="Name" autocomplete="new-name">
+                <input class="login-field" id="email" type="email" placeholder="Email" autocomplete="new-email">
                 <input class="login-field" id="password" type="password" placeholder="Password"  autocomplete="new-password">
                 <button class="login-btn" id="registerBtn" type="button" class="block">Sign up</button>
                 </form>
                 <h2 id="showLoginPageLink">Already a member? Click here!</h2>
+                <div id="errorMsg"></div>
+            </div>
+            <div id="login-footer"></div>
+        </div>
+    </template>
+    <template id="forgotPasswordPageTemplate">
+        <div id="login-container">
+            <div id="login-header"></div>
+            <div id="login-form">
+                <h2>Well....</h2>
+                <img src="images/fluffyduck.jpg">
+                <h2>That was..unfortunate...</h2>
+                <h2>The password recovery page<br>
+                is still not available</h2>
+                <button id="backToLogin" type="button">Go back...</button>
             </div>
             <div id="login-footer"></div>
         </div>
     </template>
     <template id="homePageTemplate">
             <div id="content-container">
-                <h2>Woopi</h2>
+                <h2>Congratz!</h2>
                 <p>You are now logged in!</p>
                 <p id="welcomeString">Welcome YOURNAME!</p>
+                <button type="button" id="logOutBtn">Log Out</button>
             </div>
-        </template>
+    </template>
 </body>
 <script src="todo.js"></script>
 

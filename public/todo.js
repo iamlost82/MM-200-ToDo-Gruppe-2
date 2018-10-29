@@ -1,11 +1,11 @@
 (function(){
-    if(sessionStorage.getItem('email')){
-        displayHomePage();
+    //TODO: Fix this when you understand SPA navigation better
+    if(sessionStorage.getItem('currentPage')){
+        eval(sessionStorage.getItem('currentPage'));
     } else{
-        displayLoginPage();
+        displayLoginPage();        
     }
 })();
-//Render pages
 function addTemplateElementToPage(element){
     document.getElementById('content').appendChild(element);
 }
@@ -17,8 +17,9 @@ function createElementFromTemplate(templateID){
     let clone = document.importNode(template.content, true);
     return clone;
 }
-//Login page
+//Display functions
 function displayLoginPage(){
+    sessionStorage.setItem('currentPage','displayLoginPage()');
     let pageContent = createElementFromTemplate('#loginPageTemplate');
     clearScreen();
     addTemplateElementToPage(pageContent);    
@@ -28,50 +29,85 @@ function displayLoginPage(){
     registerAccountLink.addEventListener('click',function(){
         displayRegisterPage();
     });
+    forgotPasswordLink.addEventListener('click',function(){
+        displayForgotPasswordPage();
+    });
     signInBtn.addEventListener('click',function(){
+        let halt = false;
         let email = document.querySelector("#email").value;
+        let emailTest = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(email);
+        if(!emailTest){ halt = true}
         let password = document.querySelector("#password").value;
-        if(email.length > 1 && password.length > 1){
+        if(password.length < 2){ halt = true}
+        if(!halt){
             loginUser(email,password)
         } else{
-            alert('Login failed');
+            let errorMsgDiv = document.querySelector('#errorMsg');
+            errorMsgDiv.classList.add('alert');
+            errorMsgDiv.innerHTML = '<h3>Sorry! Login failed!!</h3>'
         }
     });
 }
-//Register page
 function displayRegisterPage(){
+    sessionStorage.setItem('currentPage','displayRegisterPage()');
     let pageContent = createElementFromTemplate('#registerPageTemplate');
     clearScreen();
     addTemplateElementToPage(pageContent);    
     let registerBtn = document.querySelector('#registerBtn');
     let loginLink = document.querySelector('#showLoginPageLink');
     registerBtn.addEventListener('click',function(){
+        let halt = false;
         let username = document.querySelector('#name').value;
-        let email = document.querySelector('#email').value;
-        let password = document.querySelector('#password').value;
-        if(username.length > 1 && email.length > 1 && password.length > 1){
+        if(username.length < 2){ halt = true}
+        let email = document.querySelector("#email").value;
+        let emailTest = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(email);
+        if(!emailTest){ halt = true}
+        let password = document.querySelector("#password").value;
+        if(password.length < 2){ halt = true}
+        if(!halt){
             registerUser(username,email,password);
         } else{
-            alert("Big nono");
+            let errorMsgDiv = document.querySelector('#errorMsg');
+            errorMsgDiv.classList.add('alert');
+            errorMsgDiv.innerHTML = '<h3>Sorry! User creation failed!!</h3>'
         }
     })
     loginLink.addEventListener('click',function(){
         displayLoginPage();
     });
 }
-//Home page
 function displayHomePage() {
+    sessionStorage.setItem('currentPage','displayHomePage()');
     let pageContent = createElementFromTemplate('#homePageTemplate');
     clearScreen();
     addTemplateElementToPage(pageContent);
     let welcomeStringP = document.querySelector('#welcomeString'); 
+    let logOutBtn = document.querySelector('#logOutBtn');
     let welcomeString = welcomeStringP.innerHTML;
     let username = sessionStorage.getItem('name');
     welcomeString = welcomeString.replace('YOURNAME',username);
     welcomeStringP.innerHTML = welcomeString;
+    logOutBtn.addEventListener('click', function(){
+        sessionStorage.clear();
+        displayLoginPage();
+    });
 }
-//Other functions
+function displayForgotPasswordPage(){
+    sessionStorage.setItem('currentPage','displayForgotPasswordPage()');
+    let pageContent = createElementFromTemplate('#forgotPasswordPageTemplate');
+    clearScreen();
+    addTemplateElementToPage(pageContent);
+    let backToLoginBtn = document.querySelector('#backToLogin');
+    backToLoginBtn.addEventListener('click', function(){
+        displayLoginPage();
+    });
+}
+//Helper functions
 async function loginUser(email,password){
+    let errorMsgDiv = document.querySelector('#errorMsg');
+    errorMsgDiv.className = '';
+    errorMsgDiv.innerHTML = '';
+
     let responseCode = null;
     let response = await fetch('/api/user/auth',
     {
@@ -88,10 +124,15 @@ async function loginUser(email,password){
         sessionStorage.setItem('email',response.userData.email);
         displayHomePage();
     } else{
-        alert('Login failed');
+        errorMsgDiv.classList.add('alert');
+        errorMsgDiv.innerHTML = '<h3>Sorry! Login failed!!</h3>'
     }
 }
 async function registerUser(username,email,password){
+    let errorMsgDiv = document.querySelector('#errorMsg');
+    errorMsgDiv.className = '';
+    errorMsgDiv.innerHTML = '';
+
     let response = await fetch('/api/user/',
     {
         method: 'POST',
@@ -100,6 +141,12 @@ async function registerUser(username,email,password){
         },
         body: JSON.stringify({username:username,email:email,password:password})
     });
+    let responseCode = response.status;
     response = await response.json();
-    console.log(response);
+    if(responseCode === 201){
+        displayLoginPage();
+    } else{
+        errorMsgDiv.classList.add('alert');
+        errorMsgDiv.innerHTML = '<h3>Sorry! User creation failed!!</h3>'       
+    }
 }

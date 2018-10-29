@@ -6,6 +6,17 @@
 body{
     background-color: #00c0d5;
 }
+.alert {
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 30px;
+    border-radius: 10px;
+    padding: 20px;
+    max-width: 600px;
+    background-color: #f44336;
+    color: white;
+}
 /* Login and register screen */
 #login-container{
     background-color: #ffffff;
@@ -33,7 +44,7 @@ body{
     font-size: 1.2em;
     text-align: center;
 }
-#login-form button{
+#login-form button, #content-container button{
     background-color: #224e49;
     color: white;
     display: block;
@@ -49,7 +60,7 @@ body{
     font-size: 1.2em;
     text-align: center;
 }
-#login-form button:hover{
+#login-form button:hover, #content-container button:hover{
     opacity: 0.8;
     background-color: #00a071;
 }
@@ -66,3 +77,29 @@ body{
     height: 200px;
 }
 /* Login and register screen */
+
+/* Content */
+#content-container{
+    background-image: url('images/4k-wallpaper-bubbles-hd-wallpaper-1452701.jpg');
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    height: 100vh;
+    text-align: center;
+    padding-top: 40vh;
+}
+#content-container h2{
+    display: block;
+    background-color: #05aad3;
+    font-size: 3.5em;
+    color: #dedede;
+    font-weight: bold;
+}
+#content-container p{
+    display: block;
+    background-color: #034f9775;
+    font-weight: bold;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    font-size: 1.2em;
+    color: #dedede;
+}
