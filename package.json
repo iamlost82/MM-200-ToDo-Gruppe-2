@@ -16,6 +16,9 @@
     "url": "https://github.com/iamlost82/MM-200-ToDo-Gruppe-2/issues"
   },
   "homepage": "https://github.com/iamlost82/MM-200-ToDo-Gruppe-2#readme",
+  "engines": {
+    "node": "8.11.3"
+  },
   "dependencies": {
     "bcrypt": "^3.0.2",
     "body-parser": "^1.18.3",
