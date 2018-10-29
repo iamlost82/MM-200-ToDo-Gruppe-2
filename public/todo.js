@@ -1,5 +1,9 @@
 (function(){
-    displayLoginPage();
+    if(sessionStorage.getItem('email')){
+        displayHomePage();
+    } else{
+        displayLoginPage();
+    }
 })();
 //Render pages
 function addTemplateElementToPage(element){
@@ -22,7 +26,7 @@ function displayLoginPage(){
     let registerAccountLink = document.querySelector('#showRegisterAccountLink');
     let forgotPasswordLink = document.querySelector('#showForgotPasswordLink');
     registerAccountLink.addEventListener('click',function(){
-        displayRegisterPage()
+        displayRegisterPage();
     });
     signInBtn.addEventListener('click',function(){
         let email = document.querySelector("#email").value;
@@ -39,26 +43,53 @@ function displayRegisterPage(){
     let pageContent = createElementFromTemplate('#registerPageTemplate');
     clearScreen();
     addTemplateElementToPage(pageContent);    
-    let signUpBtn = document.querySelector('#loginBtn');
+    let registerBtn = document.querySelector('#registerBtn');
     let loginLink = document.querySelector('#showLoginPageLink');
+    registerBtn.addEventListener('click',function(){
+        let username = document.querySelector('#name').value;
+        let email = document.querySelector('#email').value;
+        let password = document.querySelector('#password').value;
+        if(username.length > 1 && email.length > 1 && password.length > 1){
+            registerUser(username,email,password);
+        } else{
+            alert("Big nono");
+        }
+    })
     loginLink.addEventListener('click',function(){
         displayLoginPage();
     });
 }
-function validateEmail(email){
-
+//Home page
+function displayHomePage() {
+    let pageContent = createElementFromTemplate('#homePageTemplate');
+    clearScreen();
+    addTemplateElementToPage(pageContent);
+    let welcomeStringP = document.querySelector('#welcomeString'); 
+    let welcomeString = welcomeStringP.innerHTML;
+    let username = sessionStorage.getItem('name');
+    welcomeString = welcomeString.replace('YOURNAME',username);
+    welcomeStringP.innerHTML = welcomeString;
 }
-async function loginUser(username,password){
+//Other functions
+async function loginUser(email,password){
+    let responseCode = null;
     let response = await fetch('/api/user/auth',
     {
         method: 'POST',
         headers:{
             "Content-Type": "application/json; charset=utf-8"
         },
-        body: JSON.stringify({username:username,password:password})
+        body: JSON.stringify({email:email,password:password})
     });
+    responseCode=response.status;
     response = await response.json();
-    console.log(response);
+    if(responseCode === 200){
+        sessionStorage.setItem('name',response.userData.name);
+        sessionStorage.setItem('email',response.userData.email);
+        displayHomePage();
+    } else{
+        alert('Login failed');
+    }
 }
 async function registerUser(username,email,password){
     let response = await fetch('/api/user/',

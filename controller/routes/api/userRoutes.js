@@ -20,7 +20,7 @@ router.post('/api/user', function(req,res,next){
                 inputData.pwhash = hash;
                 let query = `INSERT INTO "public"."users"(username, email, pwhash) 
                             VALUES($1, $2, $3) 
-                            RETURNING userid,username,email,userrole,active,pwhash`;
+                            RETURNING userid,username,email,userrole`;
                 let queryValues = [inputData.username,inputData.email,inputData.pwhash];
                 try{
                     response = await db.insert(query,queryValues);
@@ -40,20 +40,23 @@ router.post('/api/user', function(req,res,next){
 });
 
 router.post('/api/user/auth', async function(req,res,next){
-    if(req.body.username && req.body.password){
+    if(req.body.email && req.body.password){
         let match = null;
         let response = {};
-        let username = req.body.username;
+        let email = req.body.email;
         let password = req.body.password;
-        let query = `SELECT "pwhash" from "public"."users" WHERE "username" = $1`;
-        let queryValues = [username];
+        let query = `SELECT * from "public"."users" WHERE "email" = $1`;
+        let queryValues = [email];
         let queryresult = await db.select(query, queryValues);
         if(queryresult.return.rowCount === 1){
             match = await bcrypt.compare(password, queryresult.return.rows[0].pwhash);
         }
         if(match === true){
             response.status = 200;
-            response.return = {msg:'User is authorized'};
+            response.return = {msg:'User is authorized',userData:{
+                name: queryresult.return.rows[0].username,
+                email: queryresult.return.rows[0].email
+            }};
         } else{
             response.status = 401;
             response.return = {msg:'User is NOT authorized'};
