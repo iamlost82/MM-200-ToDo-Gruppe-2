@@ -86,7 +86,7 @@ router.put('/api/user',function(req,res,next){
                                                          "email" = $2,
                                                          "pwhash" = $3 
                              WHERE userid = $4 
-                             RETURNING userid,username,email,userrole,active,pwhash`;
+                             RETURNING userid,username,email,userrole`;
                 let queryValues = [inputData.username,inputData.email,inputData.pwhash,inputData.userid];
                 try{
                     response = await db.update(query,queryValues);
@@ -112,7 +112,7 @@ router.delete('/api/user', async function(req,res,next){
         let userid = req.body.userid;
         let query = `UPDATE "public"."users" SET "active" = 0
         WHERE userid = $1 
-        RETURNING userid,username,email,userrole,active,pwhash`;
+        RETURNING userid,username,email,userrole,active`;
         let queryValues = [userid];
         try{
             response = await db.delete(query,queryValues);
