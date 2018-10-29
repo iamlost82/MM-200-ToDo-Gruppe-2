@@ -1,155 +1,105 @@
-body{
-    font-family: 'Roboto', sans-serif;
-    background-color: #8da2af;
-}
-.container{
-    margin: auto;
+*{
+    font-family: Arial, Helvetica, sans-serif;
     box-sizing: border-box;
-    min-width: 600px;
-    max-width: 1200px;
-    background-color: #ffffff;
-    margin-top: 20px;
-    min-height: 90vh;
-    border-radius: 20px;
-    border: #000000 solid 3px;
-}
-.content-container{
-    padding: 20px;
-    margin: 10px;
-    border-radius: 10px;
-}
-.header{
-    background: #66afcc;
-    background: -moz-linear-gradient(top, #66afcc 1%, #006283 61%);
-    background: -webkit-linear-gradient(top, #66afcc 1%,#006283 61%);
-    background: linear-gradient(to bottom, #66afcc 1%,#006283 61%);
-    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#66afcc', endColorstr='#006283',GradientType=0 );
-    padding-top: 20px;
-    border-top-left-radius: 20px;
-    border-top-right-radius: 20px;
-    border-bottom: #000000 solid 4px;
-}
-.header h1{
-    padding-left: 20px;
-}
-.header ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-    background-color: #006283;
-}
-
-.header li {
-    float: left;
-}
-
-.header li button {
-    background-color: #ffffff; 
-    color: #000000; 
-    border: 2px solid #008CBA;
-    padding: 16px 32px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    margin: 4px 2px;
-    -webkit-transition-duration: 0.4s;
-    transition-duration: 0.4s;
-    cursor: pointer;
-}
-.header.active li button {
-    background-color: #001d25;
-}
-.header li button:hover {
-    background-color: #008CBA;
-    color: white;
-}
-#loadingContainer{
-    margin: auto;
-    padding-top: 50px;
-    width: 200px;
-}
-#loadingHeader{
-    font-size: 3em;
-}
-#loadingSpinner {
-    border: 16px solid #f3f3f3;
-    border-top: 16px solid #3498db;
-    border-radius: 50%;
-    width: 120px;
-    height: 120px;
-    animation: spinLoader 2s linear infinite;
-}
-
-@keyframes spinLoader {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
-}
-fieldset{
-    margin: 20px;
-    padding: 20px;
-}
-input[type=text], input[type=email], input[type=password]{
-    width: 100%;
-    padding: 12px 20px;
-    margin: 8px 0;
-    box-sizing: border-box;    
-}
-.button{
-    background-color: #008CBA;
-    border: none;
-    color: #000000;
-    padding: 15px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 18px;
-    width: 50%;
-    cursor: pointer;
-}
-.button:hover {
-    background-color: #003f53;
-    color: white;
-}
-.button:active {
-    background-color: #001d25;
-}
-#jokeDiv{
-    font-size: 1.2em;
-    padding: 10px;
-    margin-left: 20px;
-    margin-right: 20px;
-    border: #000000 solid 2px;
-}
-.joke-container{
-    border: #000000 solid 2px;
-    margin: 15px;
-    padding: 0;
-}
-.jokeList{
-    padding: 10px;
-    background-color: #ddeff5;
-}
-.joke-container h2 {
-    padding: 5px;
     margin: 0px;
-    background-color: #000000;
-    color: #f3f3f3;
 }
-.errormsg{
-    color: #ffffff;
-    background-color: #ff0000;
-    padding: 5px;
-    font-size: 1.1em;
-    font-style: oblique;
+body{
+    background-color: #00c0d5;
+}
+.alert {
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 30px;
+    border-radius: 10px;
+    padding: 20px;
+    max-width: 600px;
+    background-color: #f44336;
+    color: white;
+}
+/* Login and register screen */
+#login-container{
+    background-color: #ffffff;
+    display: grid;
+    grid-template-rows: 200px auto 200px;
+}
+#login-header{
+    background-image: url("images/login-head.png");
+    background-repeat: no-repeat;
+    background-size:100% 100%;
+    height: 200px;
+}
+#login-form{
     text-align: center;
 }
-.successmsg{
-    color: #000000;
-    background-color: #2bff00;
-    padding: 5px;
-    font-size: 1.1em;
-    font-style: oblique;
+#login-form .login-field{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top:10px;
+    padding: 15px;
+    border: 10px solid;
+    border-radius: 10px;
+    border-width: 0.5px;
+    font-size: 1.2em;
     text-align: center;
+}
+#login-form button, #content-container button{
+    background-color: #224e49;
+    color: white;
+    display: block;
+    width: 8em;
+    margin-top: 20px;
+    margin-bottom: 40px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 10px;
+    border: none;
+    cursor: pointer;
+    border-radius: 10px;
+    font-size: 1.2em;
+    text-align: center;
+}
+#login-form button:hover, #content-container button:hover{
+    opacity: 0.8;
+    background-color: #00a071;
+}
+#login-form h2{
+    font-size: 1.1em;
+    color: #00a071;
+    margin-top: 10px;
+    cursor: pointer;
+}
+#login-footer{
+    background-image: url("images/login-footer.png");
+    background-repeat: no-repeat;
+    background-size:100% 100%;
+    height: 200px;
+}
+/* Login and register screen */
+
+/* Content */
+#content-container{
+    background-image: url('images/4k-wallpaper-bubbles-hd-wallpaper-1452701.jpg');
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    height: 100vh;
+    text-align: center;
+    padding-top: 40vh;
+}
+#content-container h2{
+    display: block;
+    background-color: #05aad3;
+    font-size: 3.5em;
+    color: #dedede;
+    font-weight: bold;
+}
+#content-container p{
+    display: block;
+    background-color: #034f9775;
+    font-weight: bold;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    font-size: 1.2em;
+    color: #dedede;
 }

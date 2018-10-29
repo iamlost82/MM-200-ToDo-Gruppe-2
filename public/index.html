@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,21 +9,65 @@
     <link href="todolist.css" rel="stylesheet">
     <title>MM-200, ToDo list project thingie...</title>
 </head>
+
 <body>
-    <div class="container">
-        <div id="header">
-            <div class="header">
-                <h1>Demo page. Currently just showing communication towards API</h1>
-                <ul>
-                    <li><button id="homeBtn" type="button">Home</button></li>
-                    <li><button id="createNewUserBtn" type="button">Create User</button></li>
-                    <li><button id="jokeHubBtn" type="button">Manage jokes</button></li>
-                </ul>
-            </div>    
-        </div>
-        <div id="content">
-        </div>
+    <div id="content">
     </div>
+    <template id="loginPageTemplate">
+        <div id="login-container">
+            <div id="login-header"></div>
+            <div id="login-form">
+                <form>
+                <input class="login-field" id="email" type="email" placeholder="Email" autocomplete="email">
+                <input class="login-field" id="password" type="password" placeholder="Password" autocomplete="current-password">
+                <button class="login-btn" id="loginBtn" type="button" class="block">Sign in</button>
+                </form>
+                <h2 id="showRegisterAccountLink">Don't have an account? Click here!</h2>
+                <h2 id="showForgotPasswordLink">Forgot password? Click here!</h2>
+                <div id="errorMsg"></div>
+            </div>
+            <div id="login-footer"></div>
+        </div>
+    </template>
+    <template id="registerPageTemplate">
+        <div id="login-container">
+            <div id="login-header"></div>
+            <div id="login-form">
+                <form>
+                <input class="login-field" id="name" type="text" placeholder="Name" autocomplete="new-name">
+                <input class="login-field" id="email" type="email" placeholder="Email" autocomplete="new-email">
+                <input class="login-field" id="password" type="password" placeholder="Password"  autocomplete="new-password">
+                <button class="login-btn" id="registerBtn" type="button" class="block">Sign up</button>
+                </form>
+                <h2 id="showLoginPageLink">Already a member? Click here!</h2>
+                <div id="errorMsg"></div>
+            </div>
+            <div id="login-footer"></div>
+        </div>
+    </template>
+    <template id="forgotPasswordPageTemplate">
+        <div id="login-container">
+            <div id="login-header"></div>
+            <div id="login-form">
+                <h2>Well....</h2>
+                <img src="images/fluffyduck.jpg">
+                <h2>That was..unfortunate...</h2>
+                <h2>The password recovery page<br>
+                is still not available</h2>
+                <button id="backToLogin" type="button">Go back...</button>
+            </div>
+            <div id="login-footer"></div>
+        </div>
+    </template>
+    <template id="homePageTemplate">
+            <div id="content-container">
+                <h2>Congratz!</h2>
+                <p>You are now logged in!</p>
+                <p id="welcomeString">Welcome YOURNAME!</p>
+                <button type="button" id="logOutBtn">Log Out</button>
+            </div>
+    </template>
 </body>
-<script src="index.js"></script>
+<script src="todo.js"></script>
+
 </html>
