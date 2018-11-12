@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Exersice4c</title>
+</head>
+<body>
+
+<h1>Task4c</h1>
+  
+    
+    <fieldset>
+        <legend>Login</legend>
+        <label for="inpLogin">Login name:</label>
+        <input id="inpLogin" />
+        <label for="inpPsw">Password:</label>
+        <input id="inpPsw" />
+        <button id="btnLogin">Login</button>
+    </fieldset>
+    
+    <hr>
+    <p>Message from the blogfog server:</p>
+    <h3 id="txtResult"></h3>
+    <h3 id="users"></h3>
+    
+    <img id="imgAvatar"/>
+</body>
+<script>
+     get("btnLogin").onclick = async function(){ //julepapir.
+         //let token = localStorage.getItem("token");
+         let url = "http://blogfog.herokuapp.com/blogfog/users/auth/"; 
+         
+         let fdata = new FormData();
+         fdata.append("loginname", get("inpLogin").value);
+         fdata.append("password", get("inpPsw").value);
+         console.dir(fdata);
+         
+         
+         let cfg = {  //postens pakke, hvordan å sende og hva.
+             method: "POST",
+             body: fdata
+         }
+         
+         try {
+             let response = await fetch(url, cfg); //fetch - postmannen. du gir en adresse og en pakke (cfg). Await - venter på svar.
+             let data = await response.json(); 
+             
+             get("txtResult").innerHTML = `User "${data.loginname}" is logged in!`;
+             get("imgAvatar").src = data.image;
+             
+             localStorage.setItem("token", data.token); //save the token for future use.
+             
+             response = await fetch("http://blogfog.herokuapp.com/blogfog/users/?token=" + data.token);
+             let users = await response.json();
+             for (let i = 0; i <users.length; i ++){
+                 get("txtResult").innerHTML += `<h3>${users[i].fullname}</h3>
+                                                <img src="${users[i].image}"/> <hr>`
+             }
+             console.log(users);
+             
+             
+         } catch(error){
+             console.log(error);
+         }
+     }
+     
+    
+     function get(id){
+         return document.getElementById(id);
+     }
+    
+    
+    //for( let i = 0; i < )
+  
+   // token = document.getElementById("token");
+    
+
+</script>  
+   
+<style>
+    body{
+        font-family: sans-serif;
+    }
+    
+    input{
+        display: block;
+        margin-bottom: 10px;
+        width: 200px;
+    }
+    
+    button {
+        width: 200px;
+        background-color:darkblue;
+        color: white;
+    }
+</style>
+
+
+</html>

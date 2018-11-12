@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Exersice4e</title>
+</head>
+<body>
+
+<h1>Task4e</h1>
+  
+    
+    <fieldset>
+        <legend>Blog Post</legend>
+        <label for="title">Title</label>
+        <input id="title" />
+        <label for="myImage">Choose picture:</label>
+        <input id="myImage" type="file" />
+        
+        <label for="token">Content:</label>
+        <input id="myToken" />
+        <button id="myBlogPost">Create Post</button>
+    </fieldset>
+    
+    <hr>
+    <p>Message from the blogfog server:</p>
+    <h3 id="txtResult"></h3>
+    <!-- <h3 id="users"></h3> -->
+    
+    <img id="imgAvatar"/>
+</body>
+<script>
+     get("myBlogPost").onclick = async function(){ //julepapir.
+         let token = localStorage.getItem("token");
+         let url = "http://blogfog.herokuapp.com/blogfog/posts/?token=" + token; 
+         
+ 
+
+         
+         
+         
+         try {
+             let response = await fetch(url); //fetch - postmannen. du gir en adresse og en pakke (fetchSettings). Await - venter på svar.
+             console.log(response);
+             let data = await response.json(); 
+             console.log(data);
+             
+                    
+             
+             response = await fetch(url);
+             let users = await response.json();
+             for (let i = 0; i <users.length; i ++){
+                 get("txtResult").innerHTML += `<h3>${users[i].title}</h3>
+                                                <img src="${users[i].image}"/> <hr>`
+             }
+             console.log(users);
+             
+            
+             
+         } catch(error){
+             console.log(error);
+         }
+     }
+     
+    
+     function get(id){
+         return document.getElementById(id);
+     }
+    
+  /*  
+   function listAllPosts(model){
+    data = model;
+    //console.log(model)
+    container = document.createElement("div")
+    container.id = "tabell";  
+  
+    for(let i = 0; i < model.length; i++ ){ //teller, test, øke.
+    
+        let listItem = document.createElement("div");
+        listItem.onclick = click; //ListItem er currenttarget i funksjonen click.
+        listItem.id = i;
+        listItem.innerHTML = `<h3>${model[i].name}</h3>
+                              <p>${model[i].description}</p>
+                                <img src="${model[i].img_small}" />
+                                <p>Kr ${model[i].price},-</p>
+`
+                            
+        container.appendChild(listItem);
+    
+    }
+   
+     return container;
+    
+} 
+    */
+    //for( let i = 0; i < )
+  
+   // token = document.getElementById("token");
+    
+
+</script>  
+   
+<style>
+    body{
+        font-family: sans-serif;
+    }
+    
+    input{
+        display: block;
+        margin-bottom: 10px;
+        width: 200px;
+    }
+    
+    button {
+        width: 200px;
+        background-color:darkblue;
+        color: white;
+    }
+</style>
+
+
+</html>

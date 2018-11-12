@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Exersice3</title>
+</head>
+<body>
+
+<h1>Task1</h1>
+    <div id="container"></div> <br>
+    
+    <img id= "trashIMG" src="Delete_Icon.png">
+    
+</body>
+<script>
+    let container = document.getElementById("container");
+    let targetbox = document.getElementById("trashIMG");
+    
+    let cars=["Volvo","Peugeot","Citroen","Porche","Skoda"];
+    
+    update();
+    
+    function update(){
+        container.innerHTML = "";
+        for(let i = 0; i < cars.length; i++){
+            let div = document.createElement("div");
+            div.innerHTML = cars[i];
+            container.appendChild(div);
+            div.id = i; //id kan ogstå være et tall
+            div.draggable = true;
+            div.ondragstart = startDrag;
+        };        
+    }
+    
+    function startDrag(evt){
+        evt.dataTransfer.setData("id", evt.target.id);  //når jeg drar id
+    }
+    
+    
+    targetbox.ondragover = function(evt){  //funksjon som gjør at de fjernes fra lista.
+        evt.preventDefault();
+    }
+    
+    targetbox.ondrop = function(evt){ //slette
+        console.log("img dropped");
+        //container.innerHTML = "";
+        let id = evt.dataTransfer.getData("id");
+        
+        cars.splice(id,1);
+            update();
+    
+    }
+    
+</script>  
+    
+    
+<style>
+    #container{
+      display: inline-block;
+        border: 1px solid;
+        background: lightblue;  
+    }
+    
+</style>
+
+
+</html>

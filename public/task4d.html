@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Exersice4d</title>
+</head>
+<body>
+
+<h1>Task4d</h1>
+  
+    
+    <fieldset>
+        <legend>Blog Post</legend>
+        <label for="title">Title</label>
+        <input id="title" />
+        <label for="myImage">Choose picture:</label>
+        <input id="myImage" type="file" />
+        
+        <label for="token">Content:</label>
+        <input id="myToken" />
+        <button id="myBlogPost">Create Post</button>
+    </fieldset>
+    
+    <hr>
+    <p>Message from the blogfog server:</p>
+    <h3 id="txtResult"></h3>
+    <!-- <h3 id="users"></h3> -->
+    
+    <img id="imgAvatar"/>
+</body>
+<script>
+     get("myBlogPost").onclick = async function(){ //julepapir.
+         let token = localStorage.getItem("token");
+         let url = "http://blogfog.herokuapp.com/blogfog/posts/"; 
+         
+         let fdata = new FormData();
+         fdata.append("title", get("title").value);
+         fdata.append("image", get("myImage").value);
+         fdata.append("token", token);
+         fdata.append("blogpost", "ølxfvjg dgkldjgdlkgj dølgjsødgfj ");
+         
+         
+         /*fdata.append("title","Min fine post");
+         fdata.append("image", "");
+         fdata.append("token", token);
+         fdata.append("blogpost", "ølxfvjg dgkldjgdlkgj dølgjsødgfj ");*/
+         
+         
+         let fetchSettings = {  //postens pakke, hvordan å sende og hva.
+             method: "POST",
+             body: fdata
+         }
+         
+         
+         
+         try {
+             let response = await fetch(url, fetchSettings); //fetch - postmannen. du gir en adresse og en pakke (fetchSettings). Await - venter på svar.
+             let data = await response.json(); 
+             console.log(data);
+             
+             
+             get("txtResult").innerHTML = `"${data.message}"`;
+          
+             
+             
+             
+             
+             
+             
+         } catch(error){
+             console.log(error);
+         }
+     }
+     
+    
+     function get(id){
+         return document.getElementById(id);
+     }
+    
+    
+    //for( let i = 0; i < )
+  
+   // token = document.getElementById("token");
+    
+
+</script>  
+   
+<style>
+    body{
+        font-family: sans-serif;
+    }
+    
+    input{
+        display: block;
+        margin-bottom: 10px;
+        width: 200px;
+    }
+    
+    button {
+        width: 200px;
+        background-color:darkblue;
+        color: white;
+    }
+</style>
+
+
+</html>

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Exersice3</title>
+</head>
+<body>
+
+<h1>Task3</h1>
+    <div id="container"></div>
+    
+    <link href="listview.css" rel="stylesheet"/> 
+    
+    
+</body>
+    
+<script src="listview.js">
+    </script>
+    
+    <script>
+
+   
+    loadData(); 
+    
+    async function loadData(){ 
+        let url="http://sukkergris.no/choco/jsonlist/"; 
+        
+        try{    
+            
+            let response = await fetch(url); 
+            let data = await response.json(); 
+            
+            
+            let view = createListView(data);
+            view.addEventListener("choco_select", event);
+           
+            document.body.appendChild(view);
+        
+        }catch(error){   
+            console.log(error);
+        }
+    }
+        
+        
+
+function event(evt) {
+    console.log(evt.data); //don’t panic
+    console.log(evt.index); // Trump will save you!;
+}
+
+
+
+    
+   // model - Data - json
+    //view - visning html
+    //Controller - den som sender data til viewet. javascript av klasse. 
+        
+        //#tabell>div     //Div som er barn av tabell
+        
+        
+        
+        
+        
+//b) (2p) In Task 3 a), we have both a controller and a view. What can be regarded as the model? 
+      /* view er JS fila. 
+       Model - data (internett eller local storage eller server). kan være database. 
+        view- Javascriptfila (createListView); 
+        Controller - i html fila. Den henter data og viser view. dada fra server, setter vi view også henter data.
+           
+//D    - lage en ny event inni viewet(Javascript fila) når vi klikker på noe.
+        */
+
+</script> 
+    
+    
+    
+
+    
+
+</html>

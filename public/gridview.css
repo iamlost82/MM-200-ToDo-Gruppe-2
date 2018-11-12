@@ -1,0 +1,24 @@
+ #tabell>div{   
+        
+        display: inline-block;
+        width: 300px;
+     border: 1px solid black;
+              
+}
+
+
+
+#tabell{
+    border: 10px;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+#i{
+    color:aqua;
+    
+}
+
+.highlight{
+    background-color: aquamarine;
+}

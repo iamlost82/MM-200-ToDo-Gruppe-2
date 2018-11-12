@@ -1,0 +1,22 @@
+ #tabell>div{   
+        border-bottom-style: solid;
+        border-width: medium;
+    
+              
+}
+
+
+
+#tabell{
+    border: 10px;
+    
+}
+
+#i{
+    color:aqua;
+    
+}
+
+.highlight{
+    background-color: aquamarine;
+}

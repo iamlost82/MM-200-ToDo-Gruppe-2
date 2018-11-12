@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Exersice3</title>
+</head>
+<body>
+
+<h1>Task2</h1>
+    <div id="container"></div>
+    
+</body>
+<script>
+   
+    loadData(); //kjører loadData funksjon.
+    
+    async function loadData(){ //en funksjon med navn loadData som venter på at andre oppgaver skal ferdiggjøres.
+        let url="http://sukkergris.no/choco/jsonlist/"; //der vi skal hente noe fra.
+        
+        try{    //try statement snapper opp feil fra en blokk med kode.
+            
+            let response = await fetch(url); //Returnere en promise. gjør et kall - sender og mottar data. 
+            let data = await response.json(); //await operatør blir brukt til å vente for en promise.
+            console.log(response);
+            console.log(data);
+        
+        }catch(error){   //Catch statement lar deg gjøre noe med feilmeldingene.
+            console.log(error);
+        }
+    }
+    
+   /* fetch - get eller request - henter noe. Det er ikke definert noe i fetch, men urlen forventer at det er en array. 
+    Den laster en liste med Json objekter fra url. En funksjon som gjør ting, hente eller sende ting via http-protokollen. Promise.
+    
+    Await - vent her, slik som i hvis du får en brikke som ringer på en takeaway-resteurant (f.eks. lotus). The await operator is used to wait for a Promise. It can only be used inside an async function. 
+    
+    response- respons-grensesnitter i Fetch API representerer svaret på en forespørsel. 
+    Du kan opprette et nytt Response objekt ved å bruke Response. Response () -konstruktøren, men det er mer sannsynlig at du får et response-objekt som returneres som et resultat av en annen API-Operasjon, for eksempel en tjenestearbeider Fetchevent.respondWith, eller en enkel globalFetch.fetch(). INTERNETTET.
+    
+    
+    json() - JSON-objektet inneholder metoder for å analysere JavaScript Object Notation (JSON) og konvertere verdier til JSON. Det kan ikke kalles eller bygges, og bortsett fra de to metodegenskapene, har det ingen egen funksjonalitet. tekstrepresentasjon av javascript objekter.INTERNETT
+    
+    
+    data - en variabel som kjører json.
+    
+    async - dette er en funksjon som venter på at andre oppgaver skal ferdiggjøres.
+
+    
+    try - The try...catch statement marks a block of statements to try, and specifies a response, should an exception be thrown.
+    https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/try...catch
+    
+    catch - fange en feil som skjer inni en try. 
+    
+    
+    
+    
+B) Explain how we can retrieve the status code sent from the server? E.g. status code 200 indicates that the response is OK.
+        Ved å bruke response. hvis du skriver console.log(response) så får du ut status code som indikerer at koden er ok eller ikke. Koden som indikerer status 200 er ok.
+    
+C)Explain how we can display (old) data if there is no internet connection, or the server respond with a status code other than 200. 
+    Ved bruk av å lagre data i local storage når det er internettforbindelse, hvis ikke det er forbindelse eller hvis serveren sier noe annet enn 200, så henter vi data fra loacal storage. 
+    
+     */
+</script>  
+    
+
+
+</html>

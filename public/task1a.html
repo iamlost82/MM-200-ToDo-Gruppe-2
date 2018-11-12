@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Exersice3</title>
+</head>
+<body>
+
+<h1>Task1</h1>
+   <div id="container"></div>
+    
+</body>
+<script>
+    let container = document.getElementById("container");
+    let cars=["Volvo","Peugeot","Citroen","Porche","Skoda"];
+    
+    update();
+    
+    function update(){
+    container.innerHTML = "";
+    for(let i = 0; i < cars.length; i++){
+        let div = document.createElement("div");
+        let btn1 = document.createElement("button");
+        let btn2 = document.createElement("button");
+        btn1.innerHTML="Edit";
+        btn2.innerHTML="Delete";
+        div.innerHTML=cars[i];
+        div.appendChild(btn1); //appendChild - legge til /vise
+        div.appendChild(btn2);
+        btn2.id = i;   //id kan ogstå være et tall
+        btn2.onclick = btnDelete;
+        container.appendChild(div);
+    };
+        
+    }
+    
+    function btnDelete(evt){
+       
+        cars.splice(evt.currentTarget.id, 1); //fjerne et element i en array. splice er en funksjon. 1 = kun slette en. 
+         console.log(cars);
+        
+        update();
+        
+    }
+    
+    
+    //hvilket element i lista er lagret. 
+    
+    
+    
+
+</script>  
+    
+
+
+</html>

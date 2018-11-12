@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Exersice4a</title>
+</head>
+<body>
+
+<h1>Task4a</h1>
+  
+    
+    <fieldset>
+        <legend>Make new user</legend>
+        <label for="inpLogin">Login name:</label>
+        <input id="inpLogin" />
+        <label for="inpName">Full name:</label>
+        <input id="inpName" />
+        <label for="inpPsw">Password:</label>
+        <input id="inpPsw" />
+        <label for="inpAvatr">Choose picture:</label>
+        <input id="inpAvatr" type="file" />
+        <button id="btnCreate">Create user</button>
+    </fieldset>
+    
+    <hr>
+    <p>Message from the blogfog server:</p>
+    <h3 id="txtResult"></h3>
+    <img id="imgAvatar"/>
+</body>
+<script>
+     get("btnCreate").onclick = async function(){ //julepapir.
+         let fdata = new FormData();
+         fdata.append("avatar", get("inpAvatr").files[0]);
+         fdata.append("fullname", get("inpName").value);
+         fdata.append("loginname", get("inpLogin").value);
+         fdata.append("password", get("inpPsw").value);
+         console.dir(fdata);
+         
+         
+         let cfg = {  //postens pakke, hvordan å sende og hva.
+             method: "POST",
+             body: fdata
+         }
+         
+         try {
+             let response = await fetch("http://blogfog.herokuapp.com/blogfog/users/", cfg); //fetch - postmannen. du gir en adresse og en pakke (cfg). Await - venter på svar.
+             let data = await response.json(); 
+             
+             get("txtResult").innerHTML = `User "${data.loginname}" created successfully`;
+             get("imgAvatar").src = data.image;
+             
+             localStorage.setItem("token", data.token); //save the token for future use.
+         } catch(error){
+             console.log(error);
+         }
+     }
+     
+     function get(id){
+         return document.getElementById(id);
+     }
+
+</script>  
+   
+<style>
+    body{
+        font-family: sans-serif;
+    }
+    
+    input{
+        display: block;
+        margin-bottom: 10px;
+        width: 200px;
+    }
+    
+    button {
+        width: 200px;
+        background-color:darkblue;
+        color: white;
+    }
+</style>
+
+
+</html>
