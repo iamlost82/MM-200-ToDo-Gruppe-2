@@ -1,0 +1,105 @@
+*{
+    font-family: Arial, Helvetica, sans-serif;
+    box-sizing: border-box;
+    margin: 0px;
+}
+body{
+    background-color: #00c0d5;
+}
+.alert {
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 30px;
+    border-radius: 10px;
+    padding: 20px;
+    max-width: 600px;
+    background-color: #f44336;
+    color: white;
+}
+/* Login and register screen */
+#login-container{
+    background-color: #ffffff;
+    display: grid;
+    grid-template-rows: 200px auto 200px;
+}
+#login-header{
+    background-image: url("images/login-head.png");
+    background-repeat: no-repeat;
+    background-size:100% 100%;
+    height: 200px;
+}
+#login-form{
+    text-align: center;
+}
+#login-form .login-field{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top:10px;
+    padding: 15px;
+    border: 10px solid;
+    border-radius: 10px;
+    border-width: 0.5px;
+    font-size: 1.2em;
+    text-align: center;
+}
+#login-form button, #content-container button{
+    background-color: #224e49;
+    color: white;
+    display: block;
+    width: 8em;
+    margin-top: 20px;
+    margin-bottom: 40px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 10px;
+    border: none;
+    cursor: pointer;
+    border-radius: 10px;
+    font-size: 1.2em;
+    text-align: center;
+}
+#login-form button:hover, #content-container button:hover{
+    opacity: 0.8;
+    background-color: #00a071;
+}
+#login-form h2{
+    font-size: 1.1em;
+    color: #00a071;
+    margin-top: 10px;
+    cursor: pointer;
+}
+#login-footer{
+    background-image: url("images/login-footer.png");
+    background-repeat: no-repeat;
+    background-size:100% 100%;
+    height: 200px;
+}
+/* Login and register screen */
+
+/* Content */
+#content-container{
+    background-image: url('images/4k-wallpaper-bubbles-hd-wallpaper-1452701.jpg');
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    height: 100vh;
+    text-align: center;
+    padding-top: 40vh;
+}
+#content-container h2{
+    display: block;
+    background-color: #05aad3;
+    font-size: 3.5em;
+    color: #dedede;
+    font-weight: bold;
+}
+#content-container p{
+    display: block;
+    background-color: #034f9775;
+    font-weight: bold;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    font-size: 1.2em;
+    color: #dedede;
+}
