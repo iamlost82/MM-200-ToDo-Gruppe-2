@@ -1,0 +1,45 @@
+html {
+  font-family: "Avenir Next", Helevetica, sans-serif;
+  text-align: left;
+}
+
+body{
+    background-color: white;
+    
+}
+
+  
+
+
+#input {
+  padding: 10px 10px 10px 10px;
+  width: 50%;
+  font-size: 20px;
+  border-style: solid;
+  border-color: #224e49;
+  text-align: left;
+}
+
+
+
+li {
+  text-align: left;
+  font-size: 40px;
+  list-style: none;
+  margin: 0;
+   
+}
+
+li:hover {
+  text-decoration: line-through;
+}
+
+#garbage {
+    color: #00a071;
+    font-weight: normal;
+    font-size: 50px;
+    max-width: 60%;
+    display: block;
+    text-align: left;
+}
+
