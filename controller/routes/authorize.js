@@ -4,7 +4,7 @@ const db = require('../../model/db');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const TOKEN_KEY = process.env.TOKEN_KEY;
-const DEBUG = true;
+const DEBUG = false;
 
 router.post('/authorize', async function(req,res,next){
     log('Authorization request recieved');
@@ -31,7 +31,7 @@ router.post('/authorize', async function(req,res,next){
             }, TOKEN_KEY, { expiresIn: '24h' });
             response.status = 200;
             response.return = {msg:'User is authorized',userData:{
-                name: queryresult.return.rows[0].username,
+                username: queryresult.return.rows[0].username,
                 email: queryresult.return.rows[0].email,
                 token: token
             }};

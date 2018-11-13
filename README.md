@@ -1,9 +1,10 @@
-## MM-200 ToDo liste, semesterprosjekt gruppe 2
-Prosjektmappe for gruppe 2 på MM-200 ved UiA, høstsemesteret 2018
-Prosjekter består i å lage en todoliste applikasjon med en server kjørende på node.js og express, og et selvlaget frontend.
-Applikasjonen er på ingen måte ferdig ennå, men man kan følge progresjonen her...
+## MM-200 ToDo list, semesterproject group 2
 
-[API dokumentasjon](./documentation/api.md)
+Projectfiles for group 2 on MM-200 at Uia, fall 2018
+The project consist of making a todo-list web application with a server running on node.js and express, and a custom frontend.
+The application itself should run at Heroku
+
+[API docomentation](./documentation/api.md)
 
 [Heroku demo](https://mm200-todolist-group2.herokuapp.com/)
 (OBS, Heroku app is run from master branch)
