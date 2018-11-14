@@ -10,7 +10,8 @@
 
 ```javascript
 {
-    "username":"Mr.Fluffy",
+	"username":"fluffy",
+	"fullname":"Mr. Fluffy",//allowed blank
     "email":"fluffy@uia.no",
     "password":"123456789"
 }
@@ -23,8 +24,9 @@
 	"rowCount": 1,
 	"rows": [
 		{
-			"userid": "1",
-			"username": "Mr.Fluffy",
+			"id": "1",
+			"username": "fluffy",
+			"fullname": "Mr.Fluffy",
 			"email": "fluffy@uia.no",
 			"userrole": 1,
 		}
@@ -50,12 +52,24 @@
 
 * METHOD: PUT
 * ENDPOINT: /api/user
+* AUTH:
+	* HEADER:
+        * x-access-auth: TOKEN
+    * BODY(json):
+        * ```javascript
+          {
+	        "auth":"TOKEN"
+          }
+          ```
+    * PARAM:
+        * ?auth=TOKEN
 * BODY(json):
 
 ```javascript
 {
-    "userid":"1",
-    "username":"Mr.Fluffy",
+    "id": 1,
+	"username":"fluffy",
+	"fullname":"Mr.Fluffy",//Allowed blank
     "email":"fluffy@uia.no",
     "password":"123456789"
 }
@@ -68,8 +82,9 @@
 	"rowCount": 1,
 	"rows": [
 		{
-			"userid": "1",
-			"username": "Mr.Fluffy",
+			"id": "1",
+			"username": "fluffy",
+			"fullname": "Mr.Fluffy",
 			"email": "fluffy@uia.no",
 			"userrole": 1
 		}
@@ -97,6 +112,17 @@
 
 * METHOD: DELETE
 * ENDPOINT: /api/user
+* AUTH:
+	* HEADER:
+		* x-access-auth: TOKEN
+    * BODY(json):
+        * ```javascript
+          {
+	        "auth":"TOKEN"
+          }
+          ```
+    * PARAM:
+        * ?auth=TOKEN
 * BODY(json):
 
 ```javascript
@@ -160,12 +186,13 @@
 	"rowCount": 1,
 	"rows": [
 		{
-			"userid": "1",
-			"username": "Mr.Fluffy",
+			"id": 1,
+			"username": "fluffy",
+			"fullname": "Mr.Fluffy",
 			"email": "fluffy@uia.no",
 			"userrole": 1,
-			"active": 0,
-			"pwhash": "$2b$10$usoYfIy4/OR5Qcal7bk2.e983hY6NK6JKn33rTlTRqFOJFDYooBeu"
+			"lastlogin": 'null or timestamp',
+			"active": 0
 		}
 	]
 }
