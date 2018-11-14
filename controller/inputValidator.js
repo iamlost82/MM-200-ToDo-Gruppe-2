@@ -5,18 +5,19 @@ validator = function (req,res,next){
     if(req.expInput){
         log('Running validation on input data')
         for(i in req.expInput){
-            if(!(req.expInput[i] in req.body)){
-                log('Validation error found');
+            if(!(req.expInput[i] in req.body) || req.body[req.expInput[i]].length === 0){
+                log(req.expInput[i] + 'validation failed');
                 validationErrors++;
                 break;
             }
         }
-        if(req.body.email){
-            let regTest = new RegExp(/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/);
-            if(!regTest.test(req.body.email)){
-                validationErrors++;
-                log('Validation error found on email format');
-            };
+    }
+    if(req.body.email){
+        log('Running email validation');
+        let regEx = new RegExp(/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/);
+        if(!regEx.test(req.body.email)){
+            log('Email validation failed');
+            validationErrors++;        
         }
     }
 
