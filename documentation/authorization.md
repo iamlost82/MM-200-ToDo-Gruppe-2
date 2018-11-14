@@ -5,12 +5,12 @@
 ## Authorize user
 
 * METHOD: POST
-* ENDPOINT: /api/user/auth
+* ENDPOINT: /authorize
 * BODY(json):
 
 ```javascript
 {
-    "username":"fluffy@uia.no",
+    "username":"fluffy",
     "password":"123456789"
 }
 ```
