@@ -15,7 +15,7 @@ router.post('/authorize', async function(req,res,next){
         let username = req.body.username;
         username = username.toLowerCase();
         let password = req.body.password;
-        let query = `SELECT * from "public"."users_v2" WHERE "username" = $1`;
+        let query = `SELECT * from "public"."users_v2" WHERE "username" = $1 AND "active" = 1`;
         let queryValues = [username];
         let queryresult = await db.select(query, queryValues);
         if(queryresult.return.rowCount === 1){
