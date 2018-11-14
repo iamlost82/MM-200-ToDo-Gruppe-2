@@ -12,38 +12,37 @@ const saltRounds = 10;
 router.post('/api/user', function (req, res, next) {
     req.expInput = ['username', 'email', 'password'];
     next();
-}, inputvalidator,
-    function (req, res, next) {
-        let response = {};
-        let inputData = {
-            username: req.body.username.toLowerCase(),
-            fullname: req.body.fullname,
-            email: req.body.email.toLowerCase(),
-            password: req.body.password
-        };
-        bcrypt.hash(inputData.password, saltRounds, async function (e, hash) {
-            if (e) {
-                response.status = 500;
-                response.return = { error: 'Saving to database failed' };
-            } else {
-                inputData.pwhash = hash;
-                let query = `INSERT INTO "public"."users_v2"(username, fullname, email, pwhash) 
+}, inputvalidator, function (req, res, next) {
+    let response = {};
+    let inputData = {
+        username: req.body.username.toLowerCase(),
+        fullname: req.body.fullname,
+        email: req.body.email.toLowerCase(),
+        password: req.body.password
+    };
+    bcrypt.hash(inputData.password, saltRounds, async function (e, hash) {
+        if (e) {
+            response.status = 500;
+            response.return = { error: 'Saving to database failed' };
+        } else {
+            inputData.pwhash = hash;
+            let query = `INSERT INTO "public"."users_v2"(username, fullname, email, pwhash) 
                             VALUES($1, $2, $3, $4) 
                             RETURNING id,username,fullname,email,userrole`;
-                let queryValues = [inputData.username, inputData.fullname, inputData.email, inputData.pwhash];
-                try {
-                    response = await db.insert(query, queryValues);
-                    if (response.status === 200) {
-                        response.status = 201;
-                    }
-                } catch (err) {
-                    response.status = 500;
-                    response.return = { error: 'Saving to database failed' };
+            let queryValues = [inputData.username, inputData.fullname, inputData.email, inputData.pwhash];
+            try {
+                response = await db.insert(query, queryValues);
+                if (response.status === 200) {
+                    response.status = 201;
                 }
+            } catch (err) {
+                response.status = 500;
+                response.return = { error: 'Saving to database failed' };
             }
-            res.status(response.status).json(response.return);
-        });
+        }
+        res.status(response.status).json(response.return);
     });
+});
 
 
 
@@ -112,7 +111,7 @@ router.delete('/api/user', function (req, res, next) {
 
 router.get('/api/users',auth,async function(req,res,next){
     if(req.token.userrole === 99){
-        let query = 'SELECT id,username,fullname,email,userrole,lastlogin from "public"."users_v2"';
+        let query = 'SELECT id,username,fullname,email,userrole,lastlogin,active from "public"."users_v2"';
         let response = await db.select(query);
         res.status(response.status).json(response.return);
     } else{
