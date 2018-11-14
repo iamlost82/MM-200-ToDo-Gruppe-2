@@ -24,7 +24,7 @@ router.post('/authorize', async function(req,res,next){
         }
         if(match === true){
             let token = jwt.sign({
-                id: queryresult.return.rows[0].id,
+                id: parseInt(queryresult.return.rows[0].id),
                 username: queryresult.return.rows[0].username,
                 fullname: queryresult.return.rows[0].fullname,
                 userrole: queryresult.return.rows[0].userrole
@@ -35,6 +35,7 @@ router.post('/authorize', async function(req,res,next){
                 email: queryresult.return.rows[0].email,
                 token: token
             }};
+            updateLastLogin(queryresult.return.rows[0].id);
         } else{
             response.status = 401;
             response.return = {msg:'User is NOT authorized'};
@@ -46,6 +47,15 @@ router.post('/authorize', async function(req,res,next){
 });
 
 module.exports = router;
+
+async function updateLastLogin(userId){
+    let query = `UPDATE "public"."users_v2" SET "lastlogin" = 'now()' WHERE "id" = $1`;
+    let queryValues = [userId];
+    let queryresult = await db.select(query, queryValues);
+        if(queryresult.return.rowCount === 1){
+            log(queryresult);
+        }
+}
 
 function log(...messages) {
     if (DEBUG) {
