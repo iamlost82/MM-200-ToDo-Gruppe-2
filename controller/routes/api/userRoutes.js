@@ -47,7 +47,7 @@ router.post('/api/user', function (req, res, next) {
 
 
 router.put('/api/user', function (req, res, next) {
-    req.expInput = ['id', 'username', 'fullname', 'email', 'password'];
+    req.expInput = ['id', 'username', 'email', 'password'];
     next();
 }, inputvalidator, auth, admOrSelf, function (req, res, next) {
     let response = {};
