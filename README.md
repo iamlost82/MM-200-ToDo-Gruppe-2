@@ -8,3 +8,4 @@ The application itself should run at Heroku
 
 [Heroku demo](https://mm200-todolist-group2.herokuapp.com/)
 (OBS, Heroku app is run from master branch)
+
