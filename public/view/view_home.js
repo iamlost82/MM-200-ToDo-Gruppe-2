@@ -7,5 +7,6 @@ todoListCtr.view_home = function(){
     todoListCtr.addNodeToContainer(pageContent);
     todoListCtr.addClassToContainer(containerClass);
     sessionStorage.setItem('lastVisitedPage',title);
-    todoListCtr.ctr_home(); 
+    todoListCtr.ctr_home();
+    todoListCtr.loadingSpinner();
 }

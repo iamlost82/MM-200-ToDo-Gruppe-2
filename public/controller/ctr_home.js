@@ -3,6 +3,7 @@ todoListCtr.ctr_home = function(){
         todoListCtr.view_loginUser();
     }
     document.querySelector('#logOutBtn').addEventListener('click', function(){
+        todoListCtr.loadingSpinner('show');
         localStorage.clear();
         todoListCtr.view_loginUser();
     });

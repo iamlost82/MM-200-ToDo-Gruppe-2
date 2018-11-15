@@ -1,4 +1,5 @@
 todoListCtr.ctr_nav = function() {
+    todoListCtr.loadingSpinner('show');
     if(sessionStorage.getItem('lastVisitedPage')){
         switch(sessionStorage.getItem('lastVisitedPage')){
             case 'view_loginUser':

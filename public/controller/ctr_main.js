@@ -33,6 +33,14 @@ todoListCtr.addClassToContainer = function (newClass){
     container.className = newClass;
 }
 
+todoListCtr.loadingSpinner = function(options = 'hide'){
+    let spinContainer = document.querySelector('#spinContainer');
+    if(options === 'show'){
+        spinContainer.className = '';
+    } else{
+        spinContainer.className = 'hide';
+    }
+}
 
 function log(...messages) {
     if (DEBUG) {

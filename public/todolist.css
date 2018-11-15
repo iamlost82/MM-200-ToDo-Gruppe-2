@@ -115,3 +115,92 @@ body{
     font-size: 1.2em;
     color: #dedede;
 }
+/* Content */
+
+/* Loading screen */
+#spinContainer{
+    position: absolute;
+    height: 100vh;
+    width: 100vw;
+    background-color: #808080ad;
+}
+#spinLoader{
+    position:relative;
+	width:150px;
+	height:150px;
+    margin:auto;
+    top: 30vh;
+}
+.hide{
+    display: none;
+}
+.s_loader{
+    position:absolute;
+	background-color:rgb(255,255,255);
+	height:29px;
+	width:29px;
+	border-radius:15px;
+	animation-name:s_loader_name;
+	animation-duration:1.2s;
+	animation-iteration-count:infinite;
+	animation-direction:normal;
+}
+
+#s_loader_1{
+	left:0;
+	top:65px;
+	animation-delay:0.45s;
+}
+
+#s_loader_2{
+	left:19px;
+	top:19px;
+	animation-delay:0.6s;
+}
+
+#s_loader_3{
+	left:65px;
+	top:0;
+	animation-delay:0.75s;
+}
+
+#s_loader_4{
+	right:19px;
+	top:19px;
+	animation-delay:0.9s;
+}
+
+#s_loader_5{
+	right:0;
+	top:65px;
+	animation-delay:1.05s;
+}
+
+#s_loader_6{
+	right:19px;
+	bottom:19px;
+	animation-delay:1.2s;
+}
+
+#s_loader_7{
+	left:65px;
+	bottom:0;
+	animation-delay:1.35s;
+}
+
+#s_loader_8{
+	left:19px;
+	bottom:19px;
+	animation-delay:1.5s;
+}
+
+@keyframes s_loader_name{
+	0%{
+		background-color:rgb(0,192,213);
+	}
+
+	100%{
+		background-color:rgb(255,255,255);
+	}
+}
+/* Loading screen */

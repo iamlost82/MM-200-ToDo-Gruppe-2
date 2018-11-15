@@ -11,6 +11,19 @@
 </head>
 
 <body>
+    <div id="spinContainer" class="hide">
+        <div id="spinLoader">
+            <div class="s_loader" id="s_loader_1"></div>
+            <div class="s_loader" id="s_loader_2"></div>
+            <div class="s_loader" id="s_loader_3"></div>
+            <div class="s_loader" id="s_loader_4"></div>
+            <div class="s_loader" id="s_loader_5"></div>
+            <div class="s_loader" id="s_loader_6"></div>
+            <div class="s_loader" id="s_loader_7"></div>
+            <div class="s_loader" id="s_loader_8"></div>
+        </div>
+    </div>
+
     <div id="container">
     </div>
 
@@ -19,7 +32,8 @@
         <main id="login-form">
             <div id="login-msg"></div>
             <form>
-                <input class="login-field" id="username" type="username" placeholder="Username" autocomplete="username" autofocus>
+                <input class="login-field" id="username" type="username" placeholder="Username" autocomplete="username"
+                    autofocus>
                 <input class="login-field" id="password" type="password" placeholder="Password" autocomplete="current-password">
                 <button class="login-btn" id="loginUserBtn" type="button" class="block">Sign in</button>
             </form>
@@ -34,7 +48,8 @@
         <main id="login-form">
             <div id="login-msg"></div>
             <form>
-                <input class="login-field" id="username" type="text" placeholder="Username" autocomplete="new-username" autofocus>
+                <input class="login-field" id="username" type="text" placeholder="Username" autocomplete="new-username"
+                    autofocus>
                 <input class="login-field" id="fullname" type="text" placeholder="Full name(Not required)" autocomplete="new-name">
                 <input class="login-field" id="email" type="email" placeholder="Email" autocomplete="new-email">
                 <input class="login-field" id="password" type="password" placeholder="Password" autocomplete="new-password">
@@ -63,22 +78,6 @@
         <p>You are now logged in!</p>
         <p id="welcomeString">Welcome!</p>
         <button type="button" id="logOutBtn">Log Out</button>
-    </template>
-
-    <template id="loader">
-        <div id="loadingscreen">
-            <h1>Loading</h1>
-            <div id="spinLoader">
-                <div class="s_loader" id="s_loader_1"></div>
-                <div class="s_loader" id="s_loader_2"></div>
-                <div class="s_loader" id="s_loader_3"></div>
-                <div class="s_loader" id="s_loader_4"></div>
-                <div class="s_loader" id="s_loader_5"></div>
-                <div class="s_loader" id="s_loader_6"></div>
-                <div class="s_loader" id="s_loader_7"></div>
-                <div class="s_loader" id="s_loader_8"></div>
-                <div id="login-footer"></div>
-            </div>
     </template>
 
 </body>

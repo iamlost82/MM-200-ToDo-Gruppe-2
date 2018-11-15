@@ -7,5 +7,6 @@ todoListCtr.view_createUser = function(){
     todoListCtr.addNodeToContainer(pageContent);
     todoListCtr.addClassToContainer(containerClass);
     sessionStorage.setItem('lastVisitedPage',title);
-    todoListCtr.ctr_createUser(); 
+    todoListCtr.ctr_createUser();
+    todoListCtr.loadingSpinner();
 }

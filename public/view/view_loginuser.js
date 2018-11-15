@@ -7,5 +7,6 @@ todoListCtr.view_loginUser = function(){
     todoListCtr.addNodeToContainer(pageContent);
     todoListCtr.addClassToContainer(containerClass);
     sessionStorage.setItem('lastVisitedPage',title);
-    todoListCtr.ctr_loginUser(); 
+    todoListCtr.ctr_loginUser();
+    todoListCtr.loadingSpinner();
 }
