@@ -7,67 +7,89 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
     <link href="todolist.css" rel="stylesheet">
-    <title>MM-200, ToDo list project thingie...</title>
+    <title>MM-200, ToDo list, Group 2</title>
 </head>
 
 <body>
-    <div id="content">
+    <div id="container">
     </div>
-    <template id="loginPageTemplate">
-        <div id="login-container">
-            <div id="login-header"></div>
-            <div id="login-form">
-                <form>
-                <input class="login-field" id="email" type="email" placeholder="Email" autocomplete="email">
+
+    <template id="loginUserTemp">
+        <header id="login-header"></header>
+        <main id="login-form">
+            <div id="login-msg"></div>
+            <form>
+                <input class="login-field" id="username" type="username" placeholder="Username" autocomplete="username">
                 <input class="login-field" id="password" type="password" placeholder="Password" autocomplete="current-password">
-                <button class="login-btn" id="loginBtn" type="button" class="block">Sign in</button>
-                </form>
-                <h2 id="showRegisterAccountLink">Don't have an account? Click here!</h2>
-                <h2 id="showForgotPasswordLink">Forgot password? Click here!</h2>
-                <div id="errorMsg"></div>
-            </div>
-            <div id="login-footer"></div>
-        </div>
+                <button class="login-btn" id="loginUserBtn" type="button" class="block">Sign in</button>
+            </form>
+            <h2 id="link_createUser">Don't have an account? Click here!</h2>
+            <h2 id="link_forgotPassword">Forgot password? Click here!</h2>
+        </main>
+        <footer id="login-footer"></footer>
     </template>
-    <template id="registerPageTemplate">
-        <div id="login-container">
-            <div id="login-header"></div>
-            <div id="login-form">
-                <form>
-                <input class="login-field" id="name" type="text" placeholder="Name" autocomplete="new-name">
+
+    <template id="createUserTemp">
+        <header id="login-header"></header>
+        <main id="login-form">
+            <div id="login-msg"></div>
+            <form>
+                <input class="login-field" id="username" type="text" placeholder="Username" autocomplete="new-username" autofocus>
+                <input class="login-field" id="fullname" type="text" placeholder="Full name(Not required)" autocomplete="new-name">
                 <input class="login-field" id="email" type="email" placeholder="Email" autocomplete="new-email">
-                <input class="login-field" id="password" type="password" placeholder="Password"  autocomplete="new-password">
-                <button class="login-btn" id="registerBtn" type="button" class="block">Sign up</button>
-                </form>
-                <h2 id="showLoginPageLink">Already a member? Click here!</h2>
-                <div id="errorMsg"></div>
-            </div>
-            <div id="login-footer"></div>
-        </div>
+                <input class="login-field" id="password" type="password" placeholder="Password" autocomplete="new-password">
+                <button class="login-btn" id="createUserBtn" type="button" class="block">Sign up</button>
+            </form>
+            <h2 id="link_loginUser">Already a member? Click here!</h2>
+        </main>
+        <footer id="login-footer"></footer>
     </template>
-    <template id="forgotPasswordPageTemplate">
-        <div id="login-container">
-            <div id="login-header"></div>
-            <div id="login-form">
-                <h2>Well....</h2>
-                <img src="images/fluffyduck.jpg">
-                <h2>That was..unfortunate...</h2>
-                <h2>The password recovery page<br>
+
+    <template id="forgotPasswordTemp">
+        <header id="login-header"></header>
+        <main id="login-form">
+            <h2>Well....</h2>
+            <img src="images/fluffyduck.jpg">
+            <h2>That was..unfortunate...</h2>
+            <h2>The password recovery page<br>
                 is still not available</h2>
-                <button id="backToLogin" type="button">Go back...</button>
-            </div>
-            <div id="login-footer"></div>
-        </div>
+            <button id="backToLogin" type="button">Go back...</button>
+        </main>
+        <footer id="login-footer"></footer>
     </template>
-    <template id="homePageTemplate">
-            <div id="content-container">
-                <h2>Congratz!</h2>
-                <p>You are now logged in!</p>
-                <p id="welcomeString">Welcome YOURNAME!</p>
-                <button type="button" id="logOutBtn">Log Out</button>
+
+    <template id="homeTemp">
+        <h2>Congratz!</h2>
+        <p>You are now logged in!</p>
+        <p id="welcomeString">Welcome!</p>
+        <button type="button" id="logOutBtn">Log Out</button>
+    </template>
+
+    <template id="loader">
+        <div id="loadingscreen">
+            <h1>Loading</h1>
+            <div id="spinLoader">
+                <div class="s_loader" id="s_loader_1"></div>
+                <div class="s_loader" id="s_loader_2"></div>
+                <div class="s_loader" id="s_loader_3"></div>
+                <div class="s_loader" id="s_loader_4"></div>
+                <div class="s_loader" id="s_loader_5"></div>
+                <div class="s_loader" id="s_loader_6"></div>
+                <div class="s_loader" id="s_loader_7"></div>
+                <div class="s_loader" id="s_loader_8"></div>
+                <div id="login-footer"></div>
             </div>
     </template>
+
 </body>
-<script src="todo.js"></script>
+<script src="controller/ctr_main.js"></script>
+<script src="controller/ctr_validation.js"></script>
+<script src="controller/ctr_nav.js"></script>
+<script src="controller/ctr_user.js"></script>
+<script src="controller/ctr_home.js"></script>
+
+<script src="view/view_loginuser.js"></script>
+<script src="view/view_createuser.js"></script>
+<script src="view/view_home.js"></script>
 
 </html>

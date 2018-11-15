@@ -18,10 +18,22 @@ body{
     color: white;
 }
 /* Login and register screen */
-#login-container{
+.login-container{
     background-color: #ffffff;
     display: grid;
     grid-template-rows: 200px auto 200px;
+}
+.login-error{
+    position: sticky;
+    top: 15px;
+    display: block;
+    padding: 5px;
+    background-color: #ff0000;
+    color: #ffffff;
+    max-width: 400px;
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 1.2em;
 }
 #login-header{
     background-image: url("images/login-head.png");
@@ -44,7 +56,7 @@ body{
     font-size: 1.2em;
     text-align: center;
 }
-#login-form button, #content-container button{
+#login-form button, .content-container button{
     background-color: #224e49;
     color: white;
     display: block;
@@ -60,7 +72,7 @@ body{
     font-size: 1.2em;
     text-align: center;
 }
-#login-form button:hover, #content-container button:hover{
+#login-form button:hover, .content-container button:hover{
     opacity: 0.8;
     background-color: #00a071;
 }
@@ -79,7 +91,7 @@ body{
 /* Login and register screen */
 
 /* Content */
-#content-container{
+.content-container{
     background-image: url('images/4k-wallpaper-bubbles-hd-wallpaper-1452701.jpg');
     background-size: 100% 100%;
     background-repeat: no-repeat;
@@ -87,14 +99,14 @@ body{
     text-align: center;
     padding-top: 40vh;
 }
-#content-container h2{
+.content-container h2{
     display: block;
     background-color: #05aad3;
     font-size: 3.5em;
     color: #dedede;
     font-weight: bold;
 }
-#content-container p{
+.content-container p{
     display: block;
     background-color: #034f9775;
     font-weight: bold;
