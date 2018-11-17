@@ -1,3 +1,5 @@
+const DEBUG = false;
+
 const {Pool, Client} = require('pg');
 const connectionString = process.env.DATABASE_URL;
 
@@ -10,6 +12,7 @@ async function runQuery(query,values){
     try{
         await client.connect();
         let queryResult = await client.query(query,values);
+        log(queryResult);
         response.status = 200;
         response.return = {
             rowCount: queryResult.rowCount,
@@ -36,3 +39,11 @@ db.update = function (query,values) {
 }
 
 module.exports = db;
+
+function log(...messages) {
+    if (DEBUG) {
+        messages.forEach(msg => {
+            console.log(msg);
+        })
+    }
+}
