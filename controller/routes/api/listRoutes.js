@@ -50,7 +50,7 @@ router.get('/api/lists',auth, async function(req,res){
     let queryOwnLists = 'SELECT * FROM "public"."lists" WHERE "ownerid" = $1';
     let queryOwnValues = [req.token.id];
     let queryOwnResult = await db.select(queryOwnLists,queryOwnValues);
-    let querySubLists = 'SELECT * FROM "public"."lists" INNER JOIN "public"."subscriptions" ON "public"."lists"."id" = "public"."subscriptions"."list_id" WHERE "public"."subscriptions"."user_id" = $1';
+    let querySubLists = 'SELECT * FROM "public"."lists" INNER JOIN "public"."subscriptions" ON "public"."lists"."id" = "public"."subscriptions"."list_id" WHERE "public"."subscriptions"."user_id" = $1 AND NOT "public"."lists"."visibility" = 0';
     let querySubValues = [req.token.id];
     let querySubResult = await db.select(querySubLists,querySubValues);
     if(queryOwnResult.status === 200 && querySubResult.status === 200){
@@ -63,49 +63,63 @@ router.get('/api/lists',auth, async function(req,res){
     }
 });
 
-router.get('/api/list/:id',auth, async function(req,res,next){
-    log('Get single request in list API triggered');
-    let querySingleList = 'SELECT * FROM "public"."lists" WHERE "id" = $1';
-    let querySingleValue = [req.params.id];
-    let querySingleResult = await db.select(querySingleList,querySingleValue);
-    let queryAllowedUsers = 'SELECT * FROM "public"."subscriptions" WHERE "list_id" = $1';
-    let queryAllowedValues = [req.params.id];
-    let queryAllowedResult = await db.select(queryAllowedUsers,queryAllowedValues);
-    let allowed = 0;
-    if(querySingleResult.return.rows[0].ownerid === req.token.id){
-        log('User is owner..allow access');
-        allowed = 1;
-    }
-    if(req.token.userrole === 99){
-        log('User is admin. allow access')
-        allowed=1;
-    }
-    for(i in queryAllowedResult.return.rows){
-        log('Running for loop to check if user has access rights');
-        if(queryAllowedResult.return.rows[i].user_id === req.token.id){
-            log('Hit...User is subscribing. allow access')
-            allowed = 1;
-        }
-    }
-    if(allowed === 1){
-        res.status(200).json(querySingleResult.return);
-    } else{
-        res.status(401).json({msg:"Access not allowed"});
-    }
-});
-
 router.put('/api/list/:id',auth, async function(req,res,next){
     log('Put request in list API triggered');
-    let title = req.body.title;
-    let category = req.body.category;
-    let color = req.body.color;
-    
-    res.status(200).json({msg:'put list'});
+    let title, tags, color, visibility, active;
+    title = tags = color = visibility = active = null;
+    if(req.body.title){
+        if(req.body.title.length > 0){
+            title = req.body.title;
+        }
+    }
+    if(req.body.tags){
+        if(req.body.tags.length > 0){
+            tags = req.body.tags;
+        }
+    }
+    if(req.body.color){
+        if(req.body.color.length > 0){
+            color = req.body.color;
+        }
+    }
+    if(req.body.visibility){
+        if(req.body.visibility.length > 0){
+            visibility = req.body.visibility;
+        }
+    }
+    if(req.body.active){
+        if(req.body.active.length > 0){
+            active = req.body.active;
+        }
+    }
+    let query = `UPDATE "public"."lists" 
+                        SET 
+                            title = $1,
+                            tags = $2,
+                            color = $3,
+                            visibility = $4,
+                            active = $5
+                        WHERE 
+                            id = $6 
+                        RETURNING 
+                            id,title,tags,color,created,ownerid,ownerusername,visibility,active`;
+    let queryValues = [title, tags, color, visibility, active, req.params.id];
+    let queryResult = await db.update(query, queryValues);
+    res.status(queryResult.status).json(queryResult.return);
 });
 
 router.delete('/api/list/:id', auth, async function(req,res,next){
     log('Delete request in list API triggered');
-    res.status(200).json({msg:'delete list'});
+    let query = `UPDATE "public"."lists" 
+                        SET 
+                            "active" = 2 
+                        WHERE 
+                            "id" = $1 
+                        RETURNING 
+                            id,title,tags,color,created,ownerid,ownerusername,visibility,active`;
+    let queryValues = [req.params.id];
+    let queryResult = await db.update(query, queryValues);
+    res.status(queryResult.status).json(queryResult.return);
 });
 
 module.exports = router;
