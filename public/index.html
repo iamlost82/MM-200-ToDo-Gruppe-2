@@ -74,10 +74,14 @@
     </template>
 
     <template id="homeTemp">
-        <h2>Congratz!</h2>
-        <p>You are now logged in!</p>
-        <p id="welcomeString">Welcome!</p>
-        <button type="button" id="logOutBtn">Log Out</button>
+        <div class="content-header">
+            <h2>Welcome ......!!!</h2>
+            <label for="newListInput">Create new list:</label>
+            <input type="text" id="newListInput" placeholder="listname">
+            <button type="button" id="newListBtn">Create list</button>
+        </div>
+        <div id="listView" class="content"></div>
+        <div class="content-footer"></div>
     </template>
 
 </body>
