@@ -1,0 +1,83 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<title>Tags</title>
+    <link rel="stylesheet" href="tagsStyle.css">
+</head>
+<body>
+    
+    <template id="list_items">
+        <div id="list_item_tag">
+            <input id="input_list_tag" type="text" placeholder="Add a new tag:">
+            <button type="button" id = "add_list_tag" onclick="addTag">Add tag</button>
+            <div id="show_list_tag">Listed tags</div>
+            
+        </div>
+    </template>
+        
+        
+<script>
+    
+/*  let show_list_item_tag_1 = document.querySelector('#show_list_item_tag');
+    let show_list_item_tag = show_list_item_tag_1.innerHTML;
+    show_list_item_tag = show_list_item_tag.replace('Tags',Listed tags);
+    show_list_item_tag_1.innerHTML = show_list_item_tag;
+*/
+    
+    function addTag{
+        let addedTag = document.getElementById("input_list_tag").value;
+/*      arr.push("addedTag");
+        document.getElementById("demo").innerHTML = fruits;
+*/
+    }
+    
+    function showTags{
+        cont = document.getElementById("show_list_tag");
+        data = arr;
+        
+        let delete_button = document.createElement("button");
+        delete_button.addEventListener("click", function(){
+            data.splice(id,1);
+        })
+    
+    for (let i = 0; i < arr.length; i++) {
+            
+            let div = document.createElement("display_tags");
+            div.innerHTML += `<p>${arr[i].tags}</p>`
+            
+            
+            div.id = i;
+            cont.appendChild(div);
+        }
+        
+    }
+    
+    
+    
+    
+/*        let tagging_item = `INSERT INTO "public"."list_items"(tag) 
+                            VALUES($3)
+                            RETURNING tag;
+                            
+                            
+                            
+                            async function registerUser(username,email,password){
+    let errorMsgDiv = document.querySelector('#errorMsg');
+    errorMsgDiv.className = '';
+    errorMsgDiv.innerHTML = '';
+
+    let response = await fetch('/api/user/',
+    {
+        method: 'POST',
+        headers:{
+            "Content-Type": "application/json; charset=utf-8"
+        },
+        body: JSON.stringify({username:username,email:email,password:password})
+    });
+                            
+*/
+</script>
+</body>
+
+</html>
