@@ -61,8 +61,6 @@
 	        "auth":"TOKEN"
           }
           ```
-    * PARAM:
-        * ?auth=TOKEN
 * BODY(json):
 
 ```javascript
@@ -121,8 +119,6 @@
 	        "auth":"TOKEN"
           }
           ```
-    * PARAM:
-        * ?auth=TOKEN
 * BODY(json):
 
 ```javascript
@@ -176,8 +172,6 @@
 	        "auth":"TOKEN"
           }
           ```
-    * PARAM:
-        * ?auth=TOKEN
 * ENDPOINT: /api/users
 * RESPONSE SUCCESS(200)(json):
 

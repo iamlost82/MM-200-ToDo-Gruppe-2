@@ -15,8 +15,6 @@
 	        "auth":"TOKEN"
           }
           ```
-    * PARAM:
-        * ?auth=TOKEN
 * BODY(json):
 
 ```javascript
@@ -76,8 +74,6 @@ or
 	        "auth":"TOKEN"
           }
           ```
-    * PARAM:
-        * ?auth=TOKEN
 * BODY(json):
 
 ```javascript
@@ -142,9 +138,6 @@ or
 	        "auth":"TOKEN"
           }
           ```
-    * PARAM:
-        * ?auth=TOKEN
-
 
 * RESPONSE SUCCESS(200)(json):
 
@@ -189,8 +182,6 @@ or
 	        "auth":"TOKEN"
           }
           ```
-    * PARAM:
-        * ?auth=TOKEN
 
 * RESPONSE SUCCESS(200)(json):
 
