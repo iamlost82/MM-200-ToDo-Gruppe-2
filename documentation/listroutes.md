@@ -123,13 +123,6 @@
           ```
     * PARAM:
         * ?auth=TOKEN
-* BODY(json):
-
-```javascript
-{
-	"title":"Fluffys list"
-}
-```
 
 * RESPONSE SUCCESS(200)(json):
 
