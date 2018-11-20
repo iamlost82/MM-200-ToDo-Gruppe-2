@@ -36,7 +36,7 @@ router.get('/api/lists',auth, async function(req,res){
     if(queryOwnResult.status === 200 && querySubResult.status === 200){
         let allValidLists = {};
         allValidLists.ownLists  = queryOwnResult.return;
-        allValidLists.subsribedLists = querySubResult.return;
+        allValidLists.subscribedLists = querySubResult.return;
         res.status(200).json(allValidLists);
     } else{
         res.status(500).json({msg:'Error in getting data from database'})

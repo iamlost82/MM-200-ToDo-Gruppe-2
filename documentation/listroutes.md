@@ -134,7 +134,7 @@
                 "visibility": 0,
                 "active": 1}]
     }
-    "subsribedLists": {
+    "subscribedLists": {
         "rowCount": 0,
         "rows": [{
                 "id": "2",
