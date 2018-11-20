@@ -4,6 +4,7 @@ const app = express();
 
 const userRoutes = require('./controller/routes/api/userRoutes');
 const listRoutes = require('./controller/routes/api/listRoutes');
+const elementRoutes = require('./controller/routes/api/elementRoutes')
 const authorizeRoute = require('./controller/routes/authorize');
 
 app.set('port', (process.env.PORT || 8080));
@@ -13,6 +14,7 @@ app.use(bodyParser.json());
 app.use(authorizeRoute);
 app.use(userRoutes);
 app.use(listRoutes);
+app.use(elementRoutes);
 
 app.listen(app.get('port'), function(){
     console.log('Your server is now running at port: ' + app.get('port'));
