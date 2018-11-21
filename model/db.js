@@ -12,6 +12,7 @@ async function runQuery(query,values){
     try{
         await client.connect();
         let queryResult = await client.query(query,values);
+        await client.end();
         log(queryResult);
         response.status = 200;
         response.return = {

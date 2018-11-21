@@ -6,7 +6,7 @@ const db = require('../../../model/db');
 const auth = require('../../routes/authenticate');
 const inputvalidator = require('../../userInputValidator');
 const admOrSelf = require('../../admOrSelf');
-const bcrypt = require('bcrypt');
+const bcrypt = require('bcryptjs');
 const saltRounds = 10;
 
 router.post('/api/user', function (req, res, next) {

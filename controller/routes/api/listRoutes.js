@@ -1,4 +1,4 @@
-const DEBUG = false;
+const DEBUG = true;
 
 const express = require('express');
 const router = express.Router();
