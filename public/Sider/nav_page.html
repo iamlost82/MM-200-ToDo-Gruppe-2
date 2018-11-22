@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="nav_page.css" />
+<title>Nav page</title>
+</head>
+    
+<body>
+
+    <div id="container" style="width:100%; margin:0 auto; text-align: center;">
+        <h1 id = "welcome_user"> Welcome "USERNAME"!</h1>
+        
+    <div id = "navigation_buttons">
+        
+    <form> 
+        <input type=button
+               id = "my_lists_btn"
+               class = "nav_knapp"
+               value="My lists"
+               onClick="self.location='lists_page.html'">
+    <input     type=button 
+                id = "others_lists_btn"
+                class = "nav_knapp"
+               value="Others lists"
+               onClick="self.location='others_page.html'">
+    <input     type=button
+                id = "my_profile_btn"
+                class = "nav_knapp"
+               value="My profile"
+               onClick="self.location='my_profile_page.html'">
+        </form> 
+    </div>
+    
+</body>
+    <script src="nav_page.js"></script>
+ </html>

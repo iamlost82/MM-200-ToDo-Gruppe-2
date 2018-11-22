@@ -1,0 +1,30 @@
+input[type=button] {
+	background-color: #224e49;
+    border: none;
+    color: white;
+    padding: 12px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 20px;
+    margin: 5%;
+}
+
+input[type=button]:hover{
+    background-color: #00a071;
+
+}
+
+input[type=button]:active {
+	position:relative;
+	top:1px;
+}
+
+
+@media only screen and (max-width: 800px) {
+    input[type=button] {
+        display: grid;
+        margin: 0 auto;
+        margin-top: 5%!important;
+    }
+}
