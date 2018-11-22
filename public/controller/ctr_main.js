@@ -1,4 +1,4 @@
-const DEBUG = false;
+const DEBUG = true;
 let todoListCtr = {};
 
 document.addEventListener("DOMContentLoaded", function() { 

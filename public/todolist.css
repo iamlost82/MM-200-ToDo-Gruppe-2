@@ -91,7 +91,7 @@ body{
 /* Login and register screen */
 
 /* Content */
-/*
+
 .content-container{
     display: grid;
     grid-template-rows: 80px auto 40px;
@@ -109,18 +109,22 @@ body{
     background-color: aliceblue;
 }
 .listDiv{
-    display: block;
+    display: grid;
+    grid-template-columns: 50px auto;
     width: 100%;
     background-color: #f44336;
     padding: 10px;
     margin-top: 10px;
 }
+.listDiv H2{
+    padding: 10px;
+}
 .content-footer{
     overflow: hidden;
     background-color: aquamarine;
 }
-*/
 
+/*
 .content-container{
     background-image: url('images/4k-wallpaper-bubbles-hd-wallpaper-1452701.jpg');
     background-size: 100% 100%;
@@ -145,7 +149,7 @@ body{
     font-size: 1.2em;
     color: #dedede;
 }
-
+*/
 /* Content */
 
 /* Loading screen */

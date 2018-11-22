@@ -11,6 +11,9 @@ todoListCtr.ctr_nav = function() {
             case 'view_home':
                 todoListCtr.view_home();
                 break;
+            case 'view_list':
+                todoListCtr.view_list();
+                break;
             default:
                 todoListCtr.view_home();
                 break;
