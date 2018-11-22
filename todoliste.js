@@ -1,3 +1,16 @@
+
+//Menu funksjon----------------------------------
+function openNav() {
+    document.getElementById("mySidebar").style.width = "250px";
+    document.getElementById("main").style.marginLeft = "250px";
+}
+
+function closeNav() {
+    document.getElementById("mySidebar").style.width = "0";
+    document.getElementById("main").style.marginLeft= "0";
+}
+//Menu funksjon slutt----------------------------------
+
 //var garbage = document.getElementById("garbage");
 var ul = document.getElementById("list");
 var input = document.getElementById("input");
@@ -12,15 +25,60 @@ var teller = 0;
 refreshList();
 
 
+let createItemBtn = document.getElementById("createItemBtn");
+createItemBtn.addEventListener("click", function () {
+    emptyornot();
+})
+let deleteSelectedBtn = document.getElementById("deleteSelectedBtn");
+deleteSelectedBtn.addEventListener("click", function () {
+    deleteSelected();
+})
 
+/*
+let shareListGlobalBtn = document.getElementById("shareListGlobalBtn");
+shareListGlobalBtn.addEventListener("click", function () {
+    shareListGlobal();
+})
+
+
+let shareListIndividualBtn = document.getElementById("shareListIndividualBtn");
+shareListIndividualBtn.addEventListener("click", function () {
+    shareListIndividual();
+})
+
+*/
+
+//---------------------------------------------
 async function deleteSelected() {
 
     let selected = document.querySelectorAll("input:checked");
+
+    let token = localStorage.getItem('token');
+    
+
+    let fetchSettings = {
+        method: 'DELETE',
+        headers: {
+            "x-access-auth": token
+        }
+    }
+
     for (let i = 0; i < selected.length; i++) {
         let id = selected[i].dataset.id;
 
-
-        //avait fetch.... delete metode, 
+        try {
+            let fetchUrl = 'https://mm200-todolist-group2.herokuapp.com/api/element/' + id;
+            let response = await fetch(fetchUrl, fetchSettings);
+            if (response.status === 200) {
+                data = await response.json();
+                createListItems(data.rows);
+                return data;
+            } else {
+                throw 'Error';
+            }
+        } catch (err) {
+            return err;
+        }
 
 
     }
@@ -28,75 +86,42 @@ async function deleteSelected() {
 
     refreshList();
 
-
-
 }
-
-//--------------------------
-/*
-async function refreshList() {
-
-    let data = null;
-    let token = localStorage.getItem('token');
-
-    
-        /*let fetchUrl = "https://mm200-todolist-group2.herokuapp.com/api/elements/2";
-        let fetchUrl = 'api/lists';
-        let fetchSettings = {
-            method: "GET",
-            //mode: "cors",
-            headers: {
-                //'x-access-auth': localStorage.getItem('token'),
-                "x-access-auth": token
-                //'Content-Type': 'application/json'
-            }
-        }
-        //kontakte server
-    try {
-         let response = await fetch(fetchUrl,fetchSettings);
-        if(response.status === 200){
-            data = await response.json();
-            return data;
-        } else{
-            throw 'Error';
-        }
-    } catch(err){
-        return err;
-    }
-        
-    }
-*/
 
 async function refreshList() {
     let data = null;
     let token = localStorage.getItem('token');
     let fetchUrl = 'https://mm200-todolist-group2.herokuapp.com/api/elements/2';
-    
+    //let fetchUrl = '/api/elements/2';
+
+
+
     let fetchSettings = {
         method: 'GET',
         headers: {
             "x-access-auth": token
         }
     }
-    
+
     try {
         let response = await fetch(fetchUrl, fetchSettings);
         if (response.status === 200) {
             data = await response.json();
             createListItems(data.rows);
-            return data;
+            
         } else {
-            throw 'Error';
+            console.log("ikke status 200");
         }
     } catch (err) {
-        return err;
+        console.log(err);
+        
     }
 }
 
 
 //--------------------------
 function createListItems(arr) {
-    
+
     ul.innerHTML = "";
 
     for (let i = 0; i < arr.length; i++) {
@@ -149,20 +174,59 @@ async function createNewListItem() {
         deadline: dateInput.value
 
     }
-    
+
+    let fetchSettings = {
+        method: 'POST',
+        headers: {
+            "x-access-auth": token
+
+        },
+        body: JSON.stringify(uploadData)
+    }
+
+    console.log(fetchSettings)
+
+
+    //kontakte server
+    try {
+
+        let url = "https://mm200-todolist-group2.herokuapp.com/api/element/2";
+
+        let resp = await fetch(url, fetchSettings);
+        console.log("resp", resp);
+        let data = resp.text();
+        console.log("data", data);
+        refreshList();
+
+    } catch (err) {
+        console.log("catch", err);
+    }
+
+}
+
+async function shareListGlobal() {
+    let token = localStorage.getItem('token');
+
+    let uploadData = {
+
+        visibility: 2
+
+    }
+
     let fetchSettings = {
         method: 'POST',
         headers: {
             "x-access-auth": token,
-            body: JSON.stringify(uploadData)
-        }
+            
+        },
+        body: JSON.stringify(uploadData)
     }
 
 
     //kontakte server
     try {
 
-        let url = "https://mm200-todolist-group2.herokuapp.com/api/elements/2";
+        let url = "https://mm200-todolist-group2.herokuapp.com/api/list";
 
         let resp = await fetch(url, fetchSettings);
         console.log(resp);
@@ -176,6 +240,40 @@ async function createNewListItem() {
 
 }
 
+async function shareListIndividual() {
+    let token = localStorage.getItem('token');
+
+    let uploadData = {
+
+        visibility: 1
+
+    }
+
+    let fetchSettings = {
+        method: 'POST',
+        headers: {
+            "x-access-auth": token,
+            body: JSON.stringify(uploadData)
+        }
+    }
+
+
+    //kontakte server
+    try {
+
+        let url = "https://mm200-todolist-group2.herokuapp.com/api/lists";
+
+        let resp = await fetch(url, fetchSettings);
+        console.log(resp);
+        let data = resp.json();
+        console.log(data);
+        refreshList();
+
+    } catch (err) {
+        console.log(err);
+    }
+
+}
 
 /*
     //--------------------------
