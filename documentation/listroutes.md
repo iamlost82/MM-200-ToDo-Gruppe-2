@@ -121,31 +121,52 @@
 
 ```javascript
 {
-    "ownLists": {
-        "rowCount": 8,
-        "rows": [{
-                "id": "1",
-                "title": "Fluffys List",
-                "tags": null,
-                "color": null,
-                "created": "2018-11-16T09:11:50.127Z",
-                "ownerid": 1,
-                "ownerusername": "fluffy",
-                "visibility": 0,
-                "active": 1}]
-    }
-    "subscribedLists": {
-        "rowCount": 0,
-        "rows": [{
-                "id": "2",
-                "title": "Flappys List",
-                "tags": null,
-                "color": null,
-                "created": "2018-11-16T09:11:50.127Z",
-                "ownerid": 1,
-                "ownerusername": "fluffy",
-                "visibility": 1,
-                "active": 1}]
+  "rowCount": 2,
+  "rows": [
+    {
+      "id": "2",
+      "title": "Fluffys list nr 2",
+      "tags": null,
+      "color": null,
+      "created": "2018-11-22T12:12:16.209Z",
+      "ownerid": 1,
+      "ownerusername": "fluffy",
+      "visibility": 0,
+      "active": 1,
+      "sub_id": null,
+      "user_id": null,
+      "list_id": null,
+      "permission": null
+    },
+    {
+      "id": "2",
+      "title": "Subscribed list",
+      "tags": null,
+      "color": null,
+      "created": "2018-11-22T12:12:09.965Z",
+      "ownerid": 2,
+      "ownerusername": "flappy",
+      "visibility": 2,
+      "active": 1,
+      "sub_id": 1,
+      "user_id": 1,
+      "list_id": 2,
+      "permission": 1
+    },
+    {
+      "id": "1",
+      "title": "Fluffys public list",
+      "tags": null,
+      "color": null,
+      "created": "2018-11-22T12:12:09.965Z",
+      "ownerid": 1,
+      "ownerusername": "fluffy",
+      "visibility": 2,
+      "active": 1,
+      "sub_id": null,
+      "user_id": null,
+      "list_id": null,
+      "permission": null
     }
 }
 ```

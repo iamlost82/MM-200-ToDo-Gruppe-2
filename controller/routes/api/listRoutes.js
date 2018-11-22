@@ -26,20 +26,19 @@ router.post('/api/list',auth, async function (req, res) {
 
 router.get('/api/lists',auth, async function(req,res){
     log('Get request in list API triggered');
-    //Find own lists
-    let queryOwnLists = 'SELECT * FROM "public"."lists" WHERE "ownerid" = $1';
-    let queryOwnValues = [req.token.id];
-    let queryOwnResult = await db.select(queryOwnLists,queryOwnValues);
-    let querySubLists = 'SELECT * FROM "public"."lists" INNER JOIN "public"."subscriptions" ON "public"."lists"."id" = "public"."subscriptions"."list_id" WHERE "public"."subscriptions"."user_id" = $1 AND NOT "public"."lists"."visibility" = 0';
-    let querySubValues = [req.token.id];
-    let querySubResult = await db.select(querySubLists,querySubValues);
-    if(queryOwnResult.status === 200 && querySubResult.status === 200){
-        let allValidLists = {};
-        allValidLists.ownLists  = queryOwnResult.return;
-        allValidLists.subscribedLists = querySubResult.return;
-        res.status(200).json(allValidLists);
-    } else{
-        res.status(500).json({msg:'Error in getting data from database'})
+    let queryLists = `SELECT * from "public"."lists"
+    LEFT JOIN "public"."subscriptions"  
+        ON "public"."lists"."id" = "public"."subscriptions"."list_id" 
+        WHERE "public"."lists"."ownerid" = $1 
+        OR "public"."subscriptions".user_id = $2    
+        ORDER BY "public"."lists"."id" DESC`;
+    let queryValues = [req.token.id,req.token.id];
+    try{
+        let queryResult = await db.select(queryLists,queryValues);
+        res.status(queryResult.status).json(queryResult.return);
+    } catch(err){
+        log(err);
+        res.status(500).json({msg:'Error retrieveing data from DB'})
     }
 });
 
