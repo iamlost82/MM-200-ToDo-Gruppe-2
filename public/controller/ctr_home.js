@@ -16,7 +16,12 @@ todoListCtr.ctr_home = async function(){
         }
     });
     listViewDiv.addEventListener('click',function(evt){
-        log(evt);
+        if(evt.target.closest('.listDiv')){
+            let clickedDivValue = evt.target.closest('.listDiv').value;
+            sessionStorage.setItem('lastVisitedList',clickedDivValue);
+            log(clickedDivValue);
+            todoListCtr.view_list();
+        }
     });
     async function newListBtnHandler (){
         let listName = listNameInput.value;
