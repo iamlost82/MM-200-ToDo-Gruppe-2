@@ -48,7 +48,7 @@ todoListCtr.ctr_list = async function(){
             input.id = 'element_' + elements[i].id;
 
             label.htmlFor = input.id;
-            label.innerHTML = elements[i].title;
+            label.innerHTML = elements[i].title + ' ' + elements[i].deadline;
 
             div.appendChild(input);
             div.appendChild(label);
@@ -66,7 +66,7 @@ todoListCtr.ctr_list = async function(){
         log(elementName);
         log(deadline);
         if(elementName.length < 1){ validationError++; }
-        if(deadline.length === 0){ validationError++; }
+        if(deadline.length === 0){ deadline = null; }
         if(listId.length === 0){ validationError++; }
         if(validationError === 0){
             let fetchUrl = '/api/element';
@@ -85,14 +85,19 @@ todoListCtr.ctr_list = async function(){
             }
             try{
                 let response = await fetch(fetchUrl,fetchSettings);
+                log(response.status)
                 if(response.status === 201){
                     let data = await response.json();
-                    return data
+                    log(data);
+                    elements.unshift(data.rows[0]);
+                    newListElementInput.value = '';
+                    deadlineInput.value = '';
+                    renderElements();
                 } else{
                     throw 'Error';
                 }
             } catch(err){
-                return err;
+                log(err);
             }
         } else{
             log('Saving failed');
