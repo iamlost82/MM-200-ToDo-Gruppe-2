@@ -23,7 +23,7 @@
             <div class="s_loader" id="s_loader_8"></div>
         </div>
     </div>
-
+    
     <div id="container">
     </div>
 
@@ -87,11 +87,15 @@
     <template id="listTemp">
         <div class="content-header">
             <h2 id="listTitle"></h2>
-            <label for="newListElementInput">Create new list item:</label>
-            <input type="text" id="newListElementInput" placeholder="listname">
-            <label for="deadlineInput">Due date:</label>
-            <input id="deadlineInput" type="date">
-            <button type="button" id="newListElementBtn">Create list</button>
+            <fieldset>
+                <legend>Create new List Element:</legend>
+                <label for="newListElementInput">Create new list item:</label>
+                <input type="text" id="newListElementInput" placeholder="listname">
+                <label for="deadlineInput">Due date:</label>
+                <input id="deadlineInput" type="date">
+                <button type="button" id="newListElementBtn">Create list item</button>
+            </fieldset>
+            <button type="button">List settings</button>
         </div>
         <div id="elementView" class="content"></div>
         <div class="content-footer"></div>
