@@ -1,22 +1,32 @@
-var ul = document.getElementById("list");
-var input = document.getElementById("input");
+var ul = document.getElementById("listDisplay");
+var input = document.getElementById("inputListName");
 var counter = 0;
 var teller = 0;
 
 refreshList();
 
+function openNav() {
+    document.getElementById("mySidebar").style.width = "250px";
+    document.getElementById("main").style.marginLeft = "250px";
+}
+
+function closeNav() {
+    document.getElementById("mySidebar").style.width = "0";
+    document.getElementById("main").style.marginLeft = "0";
+}
+
 async function refreshList() {
     let data = null;
     let token = localStorage.getItem('token');
     let fetchUrl = 'https://mm200-todolist-group2.herokuapp.com/api/lists';
-    
+
     let fetchSettings = {
         method: 'GET',
         headers: {
             "x-access-auth": token
         }
     }
-    
+
     try {
         let response = await fetch(fetchUrl, fetchSettings);
         if (response.status === 200) {
@@ -34,11 +44,12 @@ async function refreshList() {
 
 //--------------------------
 function createListItems(arr) {
-    
+
+    ul.innerHTML = "";
 
     for (let i = 0; i < arr.length; i++) {
 
-        var item = document.getElementById("input").value;
+        var item = document.getElementById("inputListName").value;
         var itemDate = dateInput.value;
 
         /* var div = document.createElement("div");
@@ -86,9 +97,44 @@ async function createNewListItem() {
         deadline: dateInput.value
 
     }
-    
+
     let fetchSettings = {
         method: 'POST',
+        headers: {
+            "x-access-auth": token,
+            body: JSON.stringify(uploadData)
+        }
+    }
+
+
+    //kontakte server
+    try {
+
+        let url = "https://mm200-todolist-group2.herokuapp.com/api/lists";
+
+        let resp = await fetch(url, fetchSettings);
+        console.log(resp);
+        let data = resp.json();
+        console.log(data);
+        refreshList();
+
+    } catch (err) {
+        console.log(err);
+    }
+
+}
+
+async function deleteList() {
+    let token = localStorage.getItem('token');
+
+    let uploadData = {
+
+        active: 2
+
+    }
+
+    let fetchSettings = {
+        method: 'PUT',
         headers: {
             "x-access-auth": token,
             body: JSON.stringify(uploadData)
@@ -116,8 +162,8 @@ async function createNewListItem() {
 
 //Denne funksjonen spør input-feltet om veriden er null, hvis den er det kjører den en alert. Men dersom det er noe i input feltet kjører den newItem funksjonen og legger til en ny TODO, TADA!
 function emptyornot() {
-    if (document.getElementById("input").value == "") {
-        alert("An empty todo, is not a todo!");
+    if (document.getElementById("inputListName").value == "") {
+        alert("Please write a name for your list");
     } else {
         createListItems();
     }

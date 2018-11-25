@@ -1,36 +1,37 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="normalize.css" />      
-<link rel="stylesheet" href="lists_page.css" />
-<link rel="stylesheet" href="back_to_nav.css"/>
-<title>Main page</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="normalize.css" />
+    <link rel="stylesheet" href="lists_page.css" />
+    <title>Lists</title>
 </head>
-    
+
 <body>
-        <div>
-        <form> 
-        <input type= button
-               id = "back_to_nav_btn"
-               class = "back_to_nav_btn"
-               value="Back"
-               onClick="self.location='nav_page.html'">
-        </form>
+    <!--Endre href til template -->
+    <div id="mySidebar" class="sidebar">
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
+        <a href="#">Home</a>
+        <a href="#">Profile</a>
+        <a href="#">Log out</a>
+
     </div>
-        <input type="text" id="input" placeholder="What To Do?">
-        <button onclick="emptyornot()" class="button">Add to list</button>
-        </div>
-    
+    <div id="main">
+        <button class="openbtn" onclick="openNav()">☰ Menu</button>
+    </div>
+    <form>
+        <fieldset>
+            <input type="text" id="inputListName" class="title" placeholder="Name your list">
+            <button onclick="emptyornot()" class="btnAdd">Add to list</button>
+            </div>
+        </fieldset>
+        <ul id="listDisplay"></ul>
+    </form>
+
 </body>
 
-    
-    
-    
-    <script src="lists_page.js"></script>
-    
-    
-    
-    
- </html>
+<script src="lists_page.js"></script>
+
+</html>
