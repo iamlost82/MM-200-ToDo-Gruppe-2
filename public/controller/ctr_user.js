@@ -30,6 +30,7 @@ todoListCtr.ctr_loginUser = function(){
                 let data = await response.json();
                 log(data);
                 localStorage.setItem('token', data.userData.token);
+                localStorage.setItem('userData', JSON.stringify(data.userData));
                 todoListCtr.view_home();
             } catch (error) {
                 log(error);

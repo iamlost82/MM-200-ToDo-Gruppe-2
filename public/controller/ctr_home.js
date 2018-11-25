@@ -18,8 +18,11 @@ todoListCtr.ctr_home = async function(){
     listViewDiv.addEventListener('click',function(evt){
         if(evt.target.closest('.listDiv')){
             let clickedDivValue = evt.target.closest('.listDiv').value;
-            sessionStorage.setItem('lastVisitedList',clickedDivValue);
-            log(clickedDivValue);
+            for(i in lists){
+                if(lists[i].id === clickedDivValue){
+                    sessionStorage.setItem('activeList', JSON.stringify(lists[i]));
+                }
+            }
             todoListCtr.view_list();
         }
     });

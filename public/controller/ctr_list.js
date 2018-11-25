@@ -2,13 +2,17 @@ todoListCtr.ctr_list = async function(){
     if(!localStorage.getItem('token')){
         todoListCtr.view_loginUser();
     }
-    if(!sessionStorage.getItem('lastVisitedList')){
+    if(!sessionStorage.getItem('activeList')){
         todoListCtr.view_home();
     }
-    let listId = sessionStorage.getItem('lastVisitedList');
+    let listData = JSON.parse(sessionStorage.getItem('activeList'));
+    log(listData);
+    let listId = listData.id;
+    let listTitleH2 = document.querySelector('#listTitle');
+    listTitleH2.innerHTML = listData.title;
     let token = localStorage.getItem('token');
     let newListElementBtn = document.querySelector('#newListElementBtn');
-    log('You are now in list with ID: '+listId);
+    log('You are now in list with ID: '+listData.id);
     let elements = [];
     elements = await fetchElementData();
     renderElements();
