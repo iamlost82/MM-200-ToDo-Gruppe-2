@@ -1,7 +1,5 @@
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 html {
@@ -136,7 +134,7 @@ li {
     background-color: #B22222;
     border: none;
     color: white;
-    padding: 8px 15px;
+    padding: 7px 15px;
     text-align: center;
     text-decoration: none;
     display: inline-block;
@@ -152,14 +150,13 @@ li {
     background-color: #181875;
     border: none;
     color: white;
-    padding: 7px 26px;
+    padding: 7px 15px;
     text-align: center;
     text-decoration: none;
     display: inline-block;
     font-size: 20px;
     cursor: pointer;
-    margin-top: 8px;
-    margin-left: 15px;
+    margin-left: 14px;
     margin-bottom: 8px;
 }
 
@@ -171,7 +168,7 @@ li {
     background-color: #181875;
     border: none;
     color: white;
-    padding: 8px 15px;
+    padding: 7px 17px;
     text-align: center;
     text-decoration: none;
     display: inline-block;
