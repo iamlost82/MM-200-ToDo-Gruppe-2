@@ -18,6 +18,9 @@ todoListCtr.ctr_list = async function(){
     renderElements();
     newListElementBtn.addEventListener('click',createNewElement);
 
+    let date = new Date(listData.created);
+    log(date);
+
     async function fetchElementData(){
         let data = null;
         let fetchUrl = `/api/elements/${listId}`;
