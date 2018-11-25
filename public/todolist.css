@@ -4,7 +4,7 @@
     margin: 0px;
 }
 body{
-    background-color: #00c0d5;
+    background-color: lightgrey;
 }
 .alert {
     text-align: center;
@@ -94,62 +94,130 @@ body{
 
 .content-container{
     display: grid;
-    grid-template-rows: 80px auto 40px;
     height: 100vh;
-    max-width: 800px;
     margin-left: auto;
     margin-right: auto;
 }
-.content-header{
+.content-sidemenu{
+    display: none;
+    height: 100%;
+    width: 170px;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: #111;
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 60px;
+}
+.content-sidemenu button{
+    background-color: Transparent;
+    background-repeat:no-repeat;
+    border: none;
+    cursor:pointer;
     overflow: hidden;
-    background-color: #ff0000;
+    outline:none;
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 25px;
+    color: #818181;
+    display: block;
+    transition: 0.3s;
 }
-.content{
-    overflow: auto;
-    background-color: aliceblue;
+.content-sidemenu .closeBtn{
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 36px;
+    margin-left: 50px;
 }
-.listDiv{
+.content-sidemenu button:hover{
+    color: #f1f1f1;
+}
+.content-side-menu-open{
+    transition: margin-left .5s;
+    padding: 16px;  
+}
+
+.openNavbtn {
+    font-size: 20px;
+    cursor: pointer;
+    background-color: #111;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+}
+
+.openNavbtn:hover {
+    background-color: #444;
+}
+
+#createNewListFieldset input{
+    display: block;
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 10 10 10 10;
+    font-size: 20px;
+    border-style: none;
+    border-color: #224e49;
+    background-color: rgb(167, 167, 167);
+    font-size: 30px;
+}
+#createNewListFieldset button{
+    background-color: #224e49;
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+    border: none;
+    color: white;
+    padding: 7px 26px;
+    text-align: center;
+    text-decoration: none;
+    display: block;
+    font-size: 20px;
+    cursor: pointer;
+    margin-top: 8px;
+    margin-bottom: 8px;
+}
+
+#listView .listDiv{
     display: grid;
     grid-template-columns: 50px auto;
     width: 100%;
-    background-color: #f44336;
+    background-color: #224e49;
     padding: 10px;
     margin-top: 10px;
 }
-.listDiv H2{
+#listView .listDiv H2{
     padding: 10px;
 }
-.content-footer{
-    overflow: hidden;
-    background-color: aquamarine;
+.content-header{
+    display: block;
+    width: 100%;
+    position: sticky;
+    top:0;
+    background-color: lightgrey;
+
+}
+.content-header button {
+    display: inline-block;
+    font-size: 20px;
+    cursor: pointer;
+    background-color: #111;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    width: 50px;
+}
+.content-header h2 {
+    display: inline-block;
+    padding: 10px;
+    text-align: center;
+    width: auto;
 }
 
-/*
-.content-container{
-    background-image: url('images/4k-wallpaper-bubbles-hd-wallpaper-1452701.jpg');
-    background-size: 100% 100%;
-    background-repeat: no-repeat;
-    height: 100vh;
-    text-align: center;
-    padding-top: 40vh;
-}
-.content-container h2{
-    display: block;
-    background-color: #05aad3;
-    font-size: 3.5em;
-    color: #dedede;
-    font-weight: bold;
-}
-.content-container p{
-    display: block;
-    background-color: #034f9775;
-    font-weight: bold;
-    padding-top: 10px;
-    padding-bottom: 10px;
-    font-size: 1.2em;
-    color: #dedede;
-}
-*/
 /* Content */
 
 /* Loading screen */

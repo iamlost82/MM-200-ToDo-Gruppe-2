@@ -2,7 +2,8 @@ todoListCtr.ctr_loginUser = function(){
     document.querySelector('#link_createUser').addEventListener('click', function(){
         todoListCtr.loadingSpinner('show');
         log('Create user clicked, swithing view...');
-        todoListCtr.view_createUser();
+        sessionStorage.setItem('lastVisitedPage','view_createUser');
+        todoListCtr.ctr_nav();
     });
     document.querySelector('#loginUserBtn').addEventListener('click', async function(){
         todoListCtr.loadingSpinner('show');
@@ -31,7 +32,8 @@ todoListCtr.ctr_loginUser = function(){
                 log(data);
                 localStorage.setItem('token', data.userData.token);
                 localStorage.setItem('userData', JSON.stringify(data.userData));
-                todoListCtr.view_home();
+                sessionStorage.setItem('lastVisitedPage','view_home');
+                todoListCtr.ctr_nav();
             } catch (error) {
                 log(error);
                 loginerror.className = 'login-error';
@@ -48,7 +50,8 @@ todoListCtr.ctr_createUser = function(){
     document.querySelector('#link_loginUser').addEventListener('click', function(){
         todoListCtr.loadingSpinner('show');
         log('Login user clicked, swithing view...');
-        todoListCtr.view_loginUser();
+        sessionStorage.setItem('lastVisitedPage','view_loginUser');
+        todoListCtr.ctr_nav();
     });
     document.querySelector('#createUserBtn').addEventListener('click', async function(){
         todoListCtr.loadingSpinner('show');
