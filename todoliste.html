@@ -1,40 +1,40 @@
 <html>
 <head>
-    
-<meta charset="utf-8">
-       
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="normalize.css" />      
-<link rel="stylesheet" href="todoliste.css" />
-<title>To-do List</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="normalize.css" />
+    <link rel="stylesheet" href="todoliste.css" />
+    <title>To-do List</title>
 </head>
-    
 <body>
+    <!--Endre href til template -->
+    <div id="mySidebar" class="sidebar">
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
+        <a href="#">Home</a>
+        <a href="#">Profile</a>
+        <a href="#">Log out</a>
 
-    <div id="container">
-        <h1>Tittel som kan endres</h1>
-        <input type="text" id="input" placeholder="What To Do?">
-        <input type="date" id="date">
-        <button onclick="emptyornot()" class="button">Add to list</button>
-        <button onclick="deleteSelected()" class="buttonDel">Delete selected</button>
-        
+    </div>
+    <div id="main">
+        <button class="openbtn" onclick="openNav()">☰ Menu</button>
+        <button class="delBtn" onclick="disableList()">Disable list</button>
+    </div>
+    <form>
+        <input type="text" id="title_name" class="title" placeholder="Click here to edit title">
+        <fieldset>
 
-            <ul id="list"></ul>
-
-
-            
-
-
-        </div>
-    
+            <input type="text" id="input" placeholder="What To Do?">
+            <input type="date" id="date"> <br>
+            <button id="createItemBtn" class="btnAdd">Add to list</button>
+            <button id="deleteSelectedBtn" class="buttonDel">Disable selected</button>
+            <button id="createItemBtn" class="shareGlobal" onclick="shareListGlobal()">Share global</button>
+            <button id="deleteSelectedBtn" class="shareIndiv" onclick="shareListIndividual">Share individual</button>
+                    
+        </fieldset>
+        <ul id="list"></ul>
+    </form>
 </body>
 
-    
-    
-    
-    <script src="todoliste.js"></script>
-    
-    
-    
-    
- </html>
+<script src="todoliste.js"></script>
+
+</html>
