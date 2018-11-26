@@ -24,7 +24,10 @@ router.post('/api/element',auth, async function (req, res) {
 router.get('/api/elements/:listid',auth, async function (req, res) {
     log('Starting get request to elements in list');
     let listid = req.params.listid;
-    let query = `SELECT * FROM "public"."elements" WHERE "listid" = $1 AND "active" = 1 ORDER BY "deadline", "listid" DESC`;
+    let query = `SELECT * 
+                 FROM "public"."elements" 
+                 WHERE "listid" = $1 AND "active" = 1 
+                 ORDER BY "deadline", "listid" DESC`;
     let queryValues = [listid];
     let queryResult = await db.select(query,queryValues);
     res.status(queryResult.status).json(queryResult.return);

@@ -31,6 +31,7 @@ router.post('/authorize', async function(req,res,next){
             }, TOKEN_KEY, { expiresIn: '24h' });
             response.status = 200;
             response.return = {msg:'User is authorized',userData:{
+                userid: parseInt(queryresult.return.rows[0].id),
                 username: queryresult.return.rows[0].username,
                 fullname: queryresult.return.rows[0].fullname,
                 email: queryresult.return.rows[0].email,

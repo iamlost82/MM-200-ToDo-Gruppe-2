@@ -2,6 +2,11 @@ todoListCtr.ctr_home = async function(){
     if(!localStorage.getItem('token')){
         todoListCtr.view_loginUser();
     }
+    if(localStorage.getItem('username')){
+        let username = JSON.parse(localStorage.getItem('username'));
+        username = username.charAt(0).toUpperCase() + username.slice(1);
+        document.querySelector('#userNameH2').innerHTML = `Welcome ${username}`
+    }
     let lists = [];
     lists = await fetchListData();
     renderLists();
@@ -23,7 +28,8 @@ todoListCtr.ctr_home = async function(){
                     sessionStorage.setItem('activeList', JSON.stringify(lists[i]));
                 }
             }
-            todoListCtr.view_list();
+            sessionStorage.setItem('lastVisitedPage','view_list');
+            todoListCtr.ctr_nav();
         }
     });
     async function newListBtnHandler (){
