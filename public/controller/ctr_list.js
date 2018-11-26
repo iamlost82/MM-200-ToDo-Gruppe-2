@@ -16,7 +16,7 @@ todoListCtr.ctr_list = async function(){
     let elements = [];
     elements = await fetchElementData();
     renderElements();
-    newListElementBtn.addEventListener('click',createNewElement);
+    //newListElementBtn.addEventListener('click',createNewElement);
 
     async function fetchElementData(){
         let data = null;
@@ -41,23 +41,29 @@ todoListCtr.ctr_list = async function(){
     }
 
     function renderElements(){
+
         let elementViewDiv = document.querySelector('#elementView');
         elementViewDiv.innerHTML = '';
+
         for(i in elements){
-            let div = document.createElement('div');
-            let input = document.createElement('input');
+            let baseDiv = document.createElement('div');
+            let checkbox = document.createElement('input');
             let label = document.createElement('label');
+            let deadline = document.createElement('div');
+            baseDiv.className = 'elementList';
+            checkbox.type = 'checkbox';
+            checkbox.id = 'checkmark' + i;
+            label.htmlFor = 'checkmark' + i;
+            label.innerHTML = elements[i].title;
+            if(elements[i].deadline !== null){
+                let dato = new Date(elements[i].deadline);
+                deadline.innerHTML = dato.toLocaleDateString();
+            }
 
-            input.type = 'checkbox';
-            input.id = 'element_' + elements[i].id;
-
-            label.htmlFor = input.id;
-            label.innerHTML = elements[i].title + ' ' + elements[i].deadline;
-
-            div.appendChild(input);
-            div.appendChild(label);
-
-            elementViewDiv.appendChild(div);
+            baseDiv.appendChild(checkbox);
+            baseDiv.appendChild(label);
+            baseDiv.appendChild(deadline);
+            elementViewDiv.appendChild(baseDiv);
         }
     }
 

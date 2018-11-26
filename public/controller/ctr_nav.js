@@ -22,7 +22,7 @@ todoListCtr.ctr_nav = function() {
                 break;
         }
     } else if(localStorage.getItem('token')){
-        sessionStorage('lastVisitedPage','view_home');
+        sessionStorage.setItem('lastVisitedPage','view_home');
         todoListCtr.ctr_nav();
     } else{
         todoListCtr.view_loginUser();
@@ -40,7 +40,7 @@ todoListCtr.createNavMenu = function(){
     });
     navHomeBtn = generateButton('Home','navbarBtn')
     navHomeBtn.addEventListener('click',function(){
-        sessionStorage('lastVisitedPage','view_home');
+        sessionStorage.setItem('lastVisitedPage','view_home');
         todoListCtr.ctr_nav();
     });
     navProfileBtn = generateButton('Profile','navbarBtn')

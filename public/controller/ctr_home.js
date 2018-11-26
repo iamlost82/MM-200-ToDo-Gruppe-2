@@ -23,7 +23,8 @@ todoListCtr.ctr_home = async function(){
                     sessionStorage.setItem('activeList', JSON.stringify(lists[i]));
                 }
             }
-            todoListCtr.view_list();
+            sessionStorage.setItem('lastVisitedPage','view_list');
+            todoListCtr.ctr_nav();
         }
     });
     async function newListBtnHandler (){

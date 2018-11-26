@@ -89,20 +89,18 @@
     </template>
 
     <template id="listTemp">
-        <div class="content-header">
-            <h2 id="listTitle"></h2>
-            <fieldset>
-                <legend>Create new List Element:</legend>
-                <label for="newListElementInput">Create new list item:</label>
-                <input type="text" id="newListElementInput" placeholder="listname">
-                <label for="deadlineInput">Due date:</label>
-                <input id="deadlineInput" type="date">
-                <button type="button" id="newListElementBtn">Create list item</button>
-            </fieldset>
-            <button type="button">List settings</button>
-        </div>
-        <div id="elementView" class="content"></div>
-        <div class="content-footer"></div>
+        <nav></nav>
+        <main id="mainContent">
+            <div class="content-header">
+                <button type="button" id="openMenuBtn" class="openbtn">☰</button>
+                <h2 id="listTitle"></h2>
+                <div id="listNavDiv">
+                    <button type="button">Add new task</button>
+                    <button type="button">List settings</button>
+                </div>
+            </div>
+            <div id="elementView" class="content"></div>
+        </main>
     </template>
 
 </body>
