@@ -31,7 +31,8 @@ todoListCtr.ctr_loginUser = function(){
                 let data = await response.json();
                 log(data);
                 localStorage.setItem('token', data.userData.token);
-                localStorage.setItem('userData', JSON.stringify(data.userData));
+                localStorage.setItem('userid', JSON.stringify(data.userData.userid));
+                localStorage.setItem('username', JSON.stringify(data.userData.username));
                 sessionStorage.setItem('lastVisitedPage','view_home');
                 todoListCtr.ctr_nav();
             } catch (error) {

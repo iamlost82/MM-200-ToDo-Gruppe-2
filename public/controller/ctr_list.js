@@ -5,6 +5,7 @@ todoListCtr.ctr_list = async function(){
     if(!sessionStorage.getItem('activeList')){
         todoListCtr.view_home();
     }
+    let elementViewDiv = document.querySelector('#elementView');
     let listData = JSON.parse(sessionStorage.getItem('activeList'));
     log(listData);
     let listId = listData.id;
@@ -16,6 +17,35 @@ todoListCtr.ctr_list = async function(){
     let elements = [];
     elements = await fetchElementData();
     renderElements();
+    elementViewDiv.addEventListener('click',async function(evt){
+        if(evt.target.type==='checkbox'){
+            if(evt.target.checked === true){
+                for(i in elements){
+                    if(evt.target.value === elements[i].id){
+                        elements[i].checked = 'now';
+                        elements[i].checkedbyid = JSON.parse(localStorage.getItem('userid'));
+                        elements[i].checkedbyusername = JSON.parse(localStorage.getItem('username'));
+                        updatedElement = await updateElement(elements[i]);
+                        log(updatedElement);
+                        elements[i].checked = updatedElement.rows[0].checked;
+                        elements[i].checkedbyid = updatedElement.rows[0].checkedbyid;
+                        elements[i].checkedbyusername = updatedElement.rows[0].checkedbyusername;
+                        renderElements();
+                    }
+                }
+            } else{
+                for(i in elements){
+                    if(evt.target.value === elements[i].id){
+                        elements[i].checked = null;
+                        elements[i].checkedbyid = null;
+                        elements[i].checkedbyusername = null;
+                        updatedElement = updateElement(elements[i]);
+                        renderElements();
+                    }
+                }
+            }
+        }
+    });
     //newListElementBtn.addEventListener('click',createNewElement);
 
     async function fetchElementData(){
@@ -41,29 +71,46 @@ todoListCtr.ctr_list = async function(){
     }
 
     function renderElements(){
-
-        let elementViewDiv = document.querySelector('#elementView');
         elementViewDiv.innerHTML = '';
 
         for(i in elements){
-            let baseDiv = document.createElement('div');
+            let container = document.createElement('div');
             let checkbox = document.createElement('input');
             let label = document.createElement('label');
-            let deadline = document.createElement('div');
-            baseDiv.className = 'elementList';
-            checkbox.type = 'checkbox';
-            checkbox.id = 'checkmark' + i;
-            label.htmlFor = 'checkmark' + i;
-            label.innerHTML = elements[i].title;
-            if(elements[i].deadline !== null){
-                let dato = new Date(elements[i].deadline);
-                deadline.innerHTML = dato.toLocaleDateString();
-            }
+            let caption = document.createElement('div');
+            let title = document.createElement('input');
+            let byline = document.createElement('p');
 
-            baseDiv.appendChild(checkbox);
-            baseDiv.appendChild(label);
-            baseDiv.appendChild(deadline);
-            elementViewDiv.appendChild(baseDiv);
+            container.className = 'elementContainer';
+            checkbox.className = 'checkmark';
+            caption.className = 'elementCaption';
+
+            checkbox.id = 'elementId_' + elements[i].id;
+            checkbox.type = 'checkbox';
+            checkbox.value = elements[i].id;
+            label.htmlFor = 'elementId_' + elements[i].id;
+            title.type = 'text';
+
+            title.value = elements[i].title;
+            if(elements[i].deadline !== null){
+                let deadline = new Date(elements[i].deadline);
+                deadline = deadline.toLocaleDateString();
+                byline.innerHTML = 'Due: ' + deadline;
+            }
+            if(elements[i].checked !== null){
+                checkbox.checked = true;
+                let checkedDate = new Date(elements[i].checked);
+                checkedDate = checkedDate.toLocaleString();
+                byline.innerHTML = `OK: ${checkedDate},by ${elements[i].checkedbyusername}`
+            }
+            
+            caption.appendChild(title);
+            caption.appendChild(byline);
+            container.appendChild(checkbox);
+            container.appendChild(label);
+            container.appendChild(caption);
+            elementViewDiv.appendChild(container);
+
         }
     }
 
@@ -112,5 +159,58 @@ todoListCtr.ctr_list = async function(){
         } else{
             log('Saving failed');
         }      
+    }
+
+    async function updateElement(elementData) {
+        let elementid = parseInt(elementData.id);
+        let fetchUrl = `/api/element/${elementid}`;
+        if(elementData.deadline !== null){
+            let deadlineDate = new Date(elementData.deadline);
+            elementData.deadline = deadlineDate;
+        }
+        let inputData = {
+            title:elementData.title,
+            check:
+                {
+                checked:elementData.checked,
+                checkedbyid:elementData.checkedbyid,
+                checkedbyusername:elementData.checkedbyusername
+            },
+            deadline:elementData.deadline
+        }
+        let fetchSettings = {
+            method: 'PUT',
+            body: JSON.stringify(inputData),
+            headers: {
+                'x-access-auth': localStorage.getItem('token'),
+                'Content-Type': 'application/json'
+            }
+        }
+        try {
+            let response = await fetch(fetchUrl, fetchSettings);
+            log(response.status)
+            if (response.status === 200) {
+                let data = await response.json();
+                log(data);
+                return data;
+            } else {
+                throw 'Error';
+            }
+        } catch (err) {
+            log(err);
+            return err;
+        }
+    }
+
+    async function deleteElement(){
+
+    }
+
+    async function updateList(){
+
+    }
+
+    async function deleteList(){
+
     }
 }
