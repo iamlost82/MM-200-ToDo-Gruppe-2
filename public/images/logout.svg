@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 22.1.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 141.7 141.7" style="enable-background:new 0 0 141.7 141.7;" xml:space="preserve">
+<style type="text/css">
+	.st0{display:none;}
+	.st1{display:inline;fill:#224E49;}
+	.st2{display:inline;}
+	.st3{fill:#00AA73;}
+	.st4{clip-path:url(#SVGID_2_);fill:#FFFFFF;}
+	.st5{display:inline;fill:#FFFFFF;}
+	.st6{fill:none;stroke:#FFFFFF;stroke-width:11;stroke-miterlimit:10;}
+	.st7{fill:none;stroke:#FFFFFF;stroke-width:13;stroke-miterlimit:10;}
+	.st8{fill:#FFFFFF;}
+</style>
+<g id="Layer_1" class="st0">
+	<rect x="-1.2" class="st1" width="143" height="143.8"/>
+	<g class="st2">
+		<path class="st3" d="M5.8,107.8H88c0,0,0-41.1-41.1-41.1C5.8,66.7,5.8,107.8,5.8,107.8"/>
+		<path class="st3" d="M46.6,60.3c11.4,0,20.7-9.3,20.7-20.7c0-11.4-9.3-20.7-20.7-20.7s-20.7,9.3-20.7,20.7
+			C25.9,51,35.2,60.3,46.6,60.3"/>
+	</g>
+	<g class="st2">
+		<defs>
+			<rect id="SVGID_1_" x="54.5" y="24.6" width="81.9" height="83"/>
+		</defs>
+		<clipPath id="SVGID_2_">
+			<use xlink:href="#SVGID_1_"  style="display:none;overflow:visible;"/>
+		</clipPath>
+		<path class="st4" d="M54.5,107.6h81.9c0,0,0-40.9-40.9-40.9C54.5,66.7,54.5,107.6,54.5,107.6"/>
+		<path class="st4" d="M95.1,60.2c11.4,0,20.6-9.2,20.6-20.6c0-11.4-9.2-20.6-20.6-20.6s-20.6,9.2-20.6,20.6
+			C74.5,51,83.8,60.2,95.1,60.2"/>
+	</g>
+</g>
+<g id="Search" class="st0">
+	<path class="st5" d="M46.6,0C20.8,0,0,20.8,0,46.6c0,25.7,20.8,46.6,46.6,46.6c25.7,0,46.6-20.9,46.6-46.6C93.1,20.8,72.3,0,46.6,0
+		z M46.5,82.8c-20,0-36.3-16.2-36.3-36.3c0-20,16.2-36.3,36.3-36.3c20,0,36.3,16.2,36.3,36.3C82.8,66.6,66.6,82.8,46.5,82.8z"/>
+	
+		<rect x="99" y="60.2" transform="matrix(0.7071 -0.7071 0.7071 0.7071 -43.6338 105.2912)" class="st5" width="12.7" height="90.3"/>
+</g>
+<g id="log_out">
+	<path class="st6" d="M103.3,0"/>
+	<rect x="6.6" y="6.8" class="st7" width="77.2" height="127.6"/>
+	<rect x="48.2" y="62.1" class="st8" width="74.8" height="17.6"/>
+	<polyline class="st8" points="114.2,43.5 141.8,70.8 114.7,98.2 	"/>
+</g>
+</svg>
