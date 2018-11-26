@@ -169,7 +169,7 @@ body{
     background-color: rgb(167, 167, 167);
     font-size: 30px;
 }
-#createNewListFieldset button, #createNewElementFieldset button{
+#createNewListFieldset button, #createNewElementFieldset button, #editListDiv button{
     background-color: #224e49;
     width: 90%;
     margin-left: auto;
@@ -302,10 +302,39 @@ body{
     text-align: center;
 }
 #editListDiv{
-    display: none;
-    background-color: #ff0000;
+    display: block;
+    padding: 10px;
 }
-
+#editListDiv input, #editListDiv select{
+    display: inline-block;
+    width: 100%;
+    padding: 10px;
+    font-size: 1.2em;
+    border-style: none;
+    border-color: #224e49;
+    background-color:transparent;    
+}
+.tagContainer{
+    display: block;
+}
+.tagchip {
+    display: inline-block;
+    background: #aaa;
+    padding: 5px 2px 5px 10px;
+    margin: 5px;
+    border-radius: 25px;
+}
+.tagTitle{
+    font-size: 13px;
+}
+.tagDismiss{
+    background-color: #000000;
+    color: #f1f1f1;
+    font-weight: bold;
+    border-radius: 50%;
+    padding: 3px;
+    margin-right: 0;
+}
 /* Content */
 
 /* Loading screen */

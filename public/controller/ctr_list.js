@@ -18,10 +18,12 @@ todoListCtr.ctr_list = async function(){
     let toggleListSettingsBtn = document.querySelector('#toggleListSettingsBtn');
     let createNewElementDiv = document.querySelector('#createNewElementDiv');
     let editListDiv = document.querySelector('#editListDiv');
+    let addListTagInp = document.querySelector('#addListTagInp');
     log('You are now in list with ID: '+listData.id);
     let elements = [];
     elements = await fetchElementData();
     renderElements();
+    renderTags()
     elementViewDiv.addEventListener('click',async function(evt){
         if(evt.target.type==='checkbox'){
             if(evt.target.checked === true){
@@ -78,9 +80,21 @@ todoListCtr.ctr_list = async function(){
             createNewElementDiv.style.display = 'none';
         }
     });
+    addListTagInp.addEventListener('keyup',function(evt){
+        let key = evt.which || evt.keycode;
+        let newTag = addListTagInp.value;
+        if(key === 13){
+            if(newTag.length > 0){
+                listTags.push(newTag);
+                renderTags();
+            }
+        }
+    });
 
-    let date = new Date(listData.created);
-    log(date);
+    function renderTags(){
+        
+        
+    }
 
     async function fetchElementData(){
         let data = null;
