@@ -161,7 +161,8 @@ body{
     width: 90%;
     margin-left: auto;
     margin-right: auto;
-    padding: 10 10 10 10;
+    margin-bottom: 10px;
+    padding: 10;
     font-size: 20px;
     border-style: none;
     border-color: #224e49;
@@ -190,6 +191,7 @@ body{
     grid-template-columns: 50px auto;
     width: 100%;
     background-color: #224e49;
+    color: #f1f1f1;
     padding: 10px;
     margin-top: 10px;
 }
@@ -290,6 +292,18 @@ body{
 }
 .elementCaption p{
     font-size: 0.8em;
+}
+
+#createNewElementDiv{
+    display: none;
+}
+#createNewElementDiv label{
+    font-size: 1.2em;
+    text-align: center;
+}
+#editListDiv{
+    display: none;
+    background-color: #ff0000;
 }
 
 /* Content */

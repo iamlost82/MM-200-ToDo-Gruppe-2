@@ -94,8 +94,23 @@
                 <button type="button" id="openMenuBtn" class="openbtn">☰</button>
                 <h2 id="listTitle"></h2>
                 <div id="listNavDiv">
-                    <button type="button">Add new task</button>
-                    <button type="button">List settings</button>
+                    <button type="button" id="toggleNewTaskBtn">Add new task</button>
+                    <button type="button" id="toggleListSettingsBtn">List settings</button>
+                </div>
+                <div id="createNewElementDiv">
+                    <fieldset id="createNewElementFieldset">
+                        <input type="text" id="newListElementInput" placeholder="Taskname...">
+                        <label for="date">Deadline(Not required):</label>
+                        <input type="date" id="deadlineInput" placeholder="Deadline..."> <br>
+                        <button id="createItemBtn" class="btnAdd">Add to list</button>
+                    </fieldset>
+                </div>
+                <div id="editListDiv">
+                    <div>LIST TITLE</div>
+                    <div>TAGGING</div>
+                    <div>SHARING</div>
+                    <div>DELETE CHEKED ITEMS</div>
+                    <div>DISABLE LIST</div>
                 </div>
             </div>
             <div id="elementView" class="content"></div>

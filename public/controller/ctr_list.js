@@ -12,7 +12,12 @@ todoListCtr.ctr_list = async function(){
     let listTitleH2 = document.querySelector('#listTitle');
     listTitleH2.innerHTML = listData.title;
     let token = localStorage.getItem('token');
-    let newListElementBtn = document.querySelector('#newListElementBtn');
+    let newListElementBtn = document.querySelector('#createItemBtn');
+    let newListElementInput = document.querySelector('#newListElementInput');
+    let toggleNewTaskBtn = document.querySelector('#toggleNewTaskBtn');
+    let toggleListSettingsBtn = document.querySelector('#toggleListSettingsBtn');
+    let createNewElementDiv = document.querySelector('#createNewElementDiv');
+    let editListDiv = document.querySelector('#editListDiv');
     log('You are now in list with ID: '+listData.id);
     let elements = [];
     elements = await fetchElementData();
@@ -46,7 +51,33 @@ todoListCtr.ctr_list = async function(){
             }
         }
     });
-    //newListElementBtn.addEventListener('click',createNewElement);
+    newListElementBtn.addEventListener('click',createNewElement);
+    newListElementInput.addEventListener('keyup',function(evt){
+        let key = evt.which || evt.keycode;
+        if(key === 13){
+            createNewElement();
+        }
+    });
+    toggleNewTaskBtn.addEventListener('click',function(){
+        log(createNewElementDiv.style.display);
+        if(createNewElementDiv.style.display === 'block'){
+            createNewElementDiv.style.display = 'none';
+            editListDiv.style.display = 'none';
+        } else{
+            createNewElementDiv.style.display = 'block';
+            editListDiv.style.display = 'none';
+        }
+    });
+    toggleListSettingsBtn.addEventListener('click',function(){
+        log(editListDiv.style.display);
+        if(editListDiv.style.display === 'block'){
+            editListDiv.style.display = 'none';
+            createNewElementDiv.style.display = 'none';
+        } else{
+            editListDiv.style.display = 'block';
+            createNewElementDiv.style.display = 'none';
+        }
+    });
 
     let date = new Date(listData.created);
     log(date);
