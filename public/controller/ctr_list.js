@@ -70,9 +70,12 @@ todoListCtr.ctr_list = async function(){
         }    
     }
 
+    function orderElements(){
+        
+    }
+
     function renderElements(){
         elementViewDiv.innerHTML = '';
-
         for(i in elements){
             let container = document.createElement('div');
             let checkbox = document.createElement('input');
