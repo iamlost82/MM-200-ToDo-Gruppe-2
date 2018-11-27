@@ -60,11 +60,6 @@ router.put('/api/list/:id',auth, async function(req,res,next){
             tags = req.body.tags;
         }
     }
-    if(req.body.color){
-        if(req.body.color.length > 0){
-            color = req.body.color;
-        }
-    }
     if(req.body.visibility){
         if(req.body.visibility.length > 0){
             visibility = req.body.visibility;
@@ -79,14 +74,13 @@ router.put('/api/list/:id',auth, async function(req,res,next){
                         SET 
                             title = $1,
                             tags = $2,
-                            color = $3,
-                            visibility = $4,
-                            active = $5
+                            visibility = $3,
+                            active = $4
                         WHERE 
-                            id = $6 
+                            id = $5 
                         RETURNING 
                             id,title,tags,color,created,ownerid,ownerusername,visibility,active`;
-    let queryValues = [title, tags, color, visibility, active, req.params.id];
+    let queryValues = [title, tags, visibility, active, req.params.id];
     let queryResult = await db.update(query, queryValues);
     res.status(queryResult.status).json(queryResult.return);
 });
