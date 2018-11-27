@@ -47,13 +47,12 @@ router.post('/api/user', function (req, res, next) {
 
 
 router.put('/api/user', function (req, res, next) {
-    req.expInput = ['id', 'username', 'email', 'password'];
+    req.expInput = ['id', 'email', 'password'];
     next();
 }, inputvalidator, auth, admOrSelf, function (req, res, next) {
     let response = {};
     let inputData = {
-        id: req.body.id,
-        username: req.body.username.toLowerCase(),
+        id: req.token.id,
         fullname: req.body.fullname,
         email: req.body.email.toLowerCase(),
         password: req.body.password
@@ -64,13 +63,13 @@ router.put('/api/user', function (req, res, next) {
             response.return = { error: 'Saving to database failed' };
         } else {
             inputData.pwhash = hash;
-            let query = `UPDATE "public"."users_v2" SET "username" = $1,
-                                                         "fullname" = $2,
-                                                         "email" = $3,
-                                                         "pwhash" = $4 
-                             WHERE id = $5 
+            let query = `UPDATE "public"."users_v2" SET 
+                                                         "fullname" = $1,
+                                                         "email" = $2,
+                                                         "pwhash" = $3 
+                             WHERE id = $4 
                              RETURNING id,username,fullname,email,userrole`;
-            let queryValues = [inputData.username, inputData.fullname, inputData.email, inputData.pwhash, inputData.id];
+            let queryValues = [inputData.fullname, inputData.email, inputData.pwhash, inputData.id];
             try {
                 response = await db.update(query, queryValues);
                 if (response.return.rowCount !== 1) {

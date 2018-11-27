@@ -142,12 +142,13 @@
             <br>
             <div>
                 <fieldset id="createNewElementFieldset">
-                    <input type="text" id="userNameInput" placeholder="Username">
+                    <h2 id=userNameInput></h2>
                     <input type="text" id="fullNameInput" placeholder="Full name(not required)">
                     <input type="text" id="emailInput" placeholder="Email">
                     <input type="password" id="passwordInput" placeholder="New password">
                     <button id="saveUserBtn" class="btnAdd">Save userdata</button>
                     <button id="deleteUserBtn" class="btnAdd">Deactivate user</button>
+                    <div id="validationmsg"></div>
                 </fieldset>
                 <div id="userMetrics">
                     <p id="lastLoginP">We don't have any login data yet.</p>
@@ -157,6 +158,7 @@
                             Enter userid and listid to subscribe.<br>
                             Only shared list are accessible.
                         </p>
+                        <p>NOT IMPLEMENTED YET</p>
                         <input type="number" id="subUserId" placeholder="User ID">
                         <input type="number" id="subListId" placeholder="List ID">
                         <button id="subscribeBtn" class="btnAdd">Subscribe</button>

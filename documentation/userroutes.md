@@ -66,7 +66,6 @@
 ```javascript
 {
     "id": 1,
-	"username":"fluffy",
 	"fullname":"Mr.Fluffy",//Allowed blank
     "email":"fluffy@uia.no",
     "password":"123456789"
