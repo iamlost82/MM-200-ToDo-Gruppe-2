@@ -24,6 +24,8 @@ todoListCtr.ctr_list = async function(){
     let saveChangesBtn = document.querySelector('#saveChangesBtn');
     let shareSetting = document.querySelector('#editListDiv select');
     let editListTitleInp = document.querySelector('#editListTitleInp');
+    let showAllBtn = document.querySelector('#showAllBtn');
+    let hideCompleteBtn = document.querySelector('#hideCompleteBtn');
     log('You are now in list with ID: '+listData.id);
     let elements = [];
     elements = await fetchElementData();
@@ -164,13 +166,39 @@ todoListCtr.ctr_list = async function(){
     shareSetting.addEventListener('change',function(){
         listData.visibility = shareSetting.selectedIndex;
         log(listData);
+        initListView();
     });
+    showAllBtn.addEventListener('click',function(){
+        let elementsToCheck = document.querySelectorAll('.elementContainer');
+        log(elementsToCheck);
+        for(let i = 0; i < elementsToCheck.length; i++){
+            if(elementsToCheck[i].children[0].checked === true){
+                elementsToCheck[i].style.display = 'block';
+            }
+        }
+    });
+    hideCompleteBtn.addEventListener('click',function(evt){
+        let elementsToCheck = document.querySelectorAll('.elementContainer');
+        log(elementsToCheck);
+        for(let i = 0; i < elementsToCheck.length; i++){
+            if(elementsToCheck[i].children[0].checked === true){
+                elementsToCheck[i].style.display = 'none';
+            }
+        }
+    });
+
 
     function initListView(){
         log(listData);
+        let shareInfoP = document.querySelector('#shareInfoP');
         listTitleH2.innerHTML = listData.title;
         listData.tags = JSON.parse(listData.tags);
         shareSetting.selectedIndex = listData.visibility;
+        if(shareSetting.selectedIndex === 1){
+            shareInfoP.innerHTML = `Userid: ${listData.id}, Listid: ${listData.ownerid}`
+        } else{
+            shareInfoP.innerHTML = ``
+        }
         renderTags();
     }
 
@@ -239,8 +267,35 @@ todoListCtr.ctr_list = async function(){
             title.type = 'text';
 
             title.value = elements[i].title;
+            let createdDate = new Date(elements[i].created);
+                createdDate = createdDate.toLocaleString();
+                byline.innerHTML = `No due date!`
             if(elements[i].deadline !== null){
+                let today = new Date();
                 let deadline = new Date(elements[i].deadline);
+                let todayArr = [today.getFullYear(),today.getMonth(),today.getDate()];
+                let deadlineArr = [deadline.getFullYear(),deadline.getMonth(),deadline.getDate()];
+                log(todayArr,deadlineArr);
+                if(todayArr[2]>deadlineArr[2]){
+                    log(todayArr[2]>deadlineArr[2])
+                    if(todayArr[1]>=deadlineArr[1]){
+                        log(todayArr[1]>=deadlineArr[1])
+                        if(todayArr[0]>=deadlineArr[0]){
+                            log(todayArr[0]>=deadlineArr[0])
+                            container.classList.add('duePast')
+                        }
+                    }
+                }
+                if(todayArr[2]===deadlineArr[2]){
+                    log(todayArr[2]===deadlineArr[2])
+                    if(todayArr[1]===deadlineArr[1]){
+                        log(todayArr[1]===deadlineArr[1])
+                        if(todayArr[0]===deadlineArr[0]){
+                            log(todayArr[0]===deadlineArr[0])
+                            container.classList.add('dueToday')
+                        }
+                    }
+                }
                 deadline = deadline.toLocaleDateString();
                 byline.innerHTML = 'Due: ' + deadline;
             }
@@ -248,9 +303,25 @@ todoListCtr.ctr_list = async function(){
                 checkbox.checked = true;
                 let checkedDate = new Date(elements[i].checked);
                 checkedDate = checkedDate.toLocaleString();
-                byline.innerHTML = `OK: ${checkedDate},by ${elements[i].checkedbyusername}`
+                byline.innerHTML = `OK: ${checkedDate}, by ${elements[i].checkedbyusername}`
             }
             
+            title.addEventListener('keyup',async function(evt){
+                let eventID = evt.target.parentElement.parentElement.children[0].value;
+                let eventTitle = evt.target.value
+                if(eventTitle.length > 0){
+                    for(i in elements){
+                        if(eventID === elements[i].id){
+                            if(eventTitle !== elements[i].title){
+                                elements[i].title = eventTitle;
+                                let updatedElement = await updateElement(elements[i]);
+                                log(updatedElement)
+                            }
+                        }
+                    }
+                }
+            });
+
             caption.appendChild(title);
             caption.appendChild(byline);
             container.appendChild(checkbox);

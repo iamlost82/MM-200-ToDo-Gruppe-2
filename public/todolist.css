@@ -240,8 +240,17 @@ body{
     font-size: 20px;
     list-style: none;
 }
+
 .elementContainer:nth-child(odd){
     background-color: #a7a7a7;
+}
+
+.elementContainer.dueToday{
+    background-color: #ac894a;
+}
+
+.elementContainer.duePast{
+    background-color: #dd7070;
 }
 
 .elementContainer input[type=checkbox] + label {
