@@ -13,6 +13,8 @@ app.set('port', (process.env.PORT || 8080));
 app.use(express.static('public'));
 app.use(bodyParser.json());
 
+//CORS IS ENABLED IN SUBMITTET FILES, BUT NOW TAKEN OUT ON LIVE SERVER
+/*
 app.use(function(req, res, next) {
     res.header("Access-Control-Allow-Origin", "*");
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, x-access-auth");
@@ -20,6 +22,7 @@ app.use(function(req, res, next) {
     res.header('Content-Type','application/json');
     next();
 });
+*/
 
 app.use(authorizeRoute);
 app.use(userRoutes);
