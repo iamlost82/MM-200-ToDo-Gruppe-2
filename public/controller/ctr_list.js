@@ -29,6 +29,11 @@ todoListCtr.ctr_list = async function(){
     log('You are now in list with ID: '+listData.id);
     let elements = [];
     elements = await fetchElementData();
+    if(elements==='Error'){
+        localStorage.clear();
+        sessionStorage.clear();
+        todoListCtr.view_loginUser();
+    };
     renderElements();
     renderTags();
     initListView();

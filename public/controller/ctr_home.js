@@ -9,6 +9,11 @@ todoListCtr.ctr_home = async function(){
     }
     let lists = [];
     lists = await fetchListData();
+    if(lists==='Error'){
+        localStorage.clear();
+        sessionStorage.clear();
+        todoListCtr.view_loginUser();
+    };
     renderLists();
     let listViewDiv = document.querySelector('#listView');
     let listNameInput = document.querySelector('#newListInput');
