@@ -17,7 +17,7 @@ router.post('/api/list',auth, async function (req, res) {
     let query = `INSERT into "public"."lists"(title,ownerid,ownerusername) 
                  VALUES($1,$2,$3)
                         RETURNING 
-                            id,title,tags,color,created,ownerid,ownerusername,visibility,active`;
+                            *`;
     let queryValues = [title, req.token.id, req.token.username];
     let queryResult = await db.update(query, queryValues);
     if(queryResult.status === 200){queryResult.status = 201;}
@@ -79,7 +79,7 @@ router.put('/api/list/:id',auth, async function(req,res,next){
                         WHERE 
                             id = $5 
                         RETURNING 
-                            id,title,tags,color,created,ownerid,ownerusername,visibility,active`;
+                            *`;
     let queryValues = [title, tags, visibility, active, req.params.id];
     let queryResult = await db.update(query, queryValues);
     res.status(queryResult.status).json(queryResult.return);
