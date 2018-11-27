@@ -10,7 +10,6 @@ todoListCtr.ctr_list = async function(){
     log(listData);
     let listId = listData.id;
     let listTitleH2 = document.querySelector('#listTitle');
-    listTitleH2.innerHTML = listData.title;
     let token = localStorage.getItem('token');
     let newListElementBtn = document.querySelector('#createItemBtn');
     let newListElementInput = document.querySelector('#newListElementInput');
@@ -19,12 +18,18 @@ todoListCtr.ctr_list = async function(){
     let createNewElementDiv = document.querySelector('#createNewElementDiv');
     let editListDiv = document.querySelector('#editListDiv');
     let addListTagInp = document.querySelector('#addListTagInp');
-    let tagContainer = document.querySelector(".tagContainer");
+    let tagContainer = document.querySelector('.tagContainer');
+    let deleteCompTasksBtn = document.querySelector('#deleteCompTasksBtn');
+    let deactivateListBtn = document.querySelector('#deactivateListBtn');
+    let saveChangesBtn = document.querySelector('#saveChangesBtn');
+    let shareSetting = document.querySelector('#editListDiv select');
+    let editListTitleInp = document.querySelector('#editListTitleInp');
     log('You are now in list with ID: '+listData.id);
     let elements = [];
     elements = await fetchElementData();
     renderElements();
     renderTags();
+    initListView();
     if(JSON.parse(localStorage.getItem('userid')) !== listData.ownerid){
         editListDiv.innerHTML = 'List options not available<br>You are not the list owner.';
         log(JSON.parse(localStorage.getItem('userid')));
@@ -107,6 +112,68 @@ todoListCtr.ctr_list = async function(){
             renderTags();
         }
     });
+    deleteCompTasksBtn.addEventListener('click',async function(){
+        let data = null;
+        let fetchUrl = `/api/elements/${listId}`;
+        let fetchSettings = {
+            method: 'DELETE',
+            headers: {
+                "x-access-auth": token
+            }
+        }
+        try{
+            let response = await fetch(fetchUrl,fetchSettings);
+            if(response.status === 200){
+                data = await response.json();
+                for(i in data.rows){
+                    for(j in elements){
+                        if(data.rows[i].id === elements[j].id){
+                            elements.splice(j,1);
+                        }
+                    }
+                }
+                renderElements();
+            } else{
+                throw 'Error';
+            }
+        } catch(err){
+            log(err);
+        }    
+    });
+    deactivateListBtn.addEventListener('click',async function(){
+        listData.active = 2;
+        await updateList();
+        log('updateList should be complete')
+        sessionStorage.setItem('lastVisitedPage','view_home');
+        todoListCtr.ctr_nav();
+    });
+    saveChangesBtn.addEventListener('click',async function(){
+        let data = await updateList();
+        listData = data.rows[0];
+        sessionStorage.setItem('activeList',JSON.stringify(listData))
+        initListView();
+        log(data);
+        log(listData);
+    });
+    editListTitleInp.addEventListener('keyup',function(){
+        if(editListTitleInp.value.length > 1){
+            listData.title = editListTitleInp.value;
+            log(listData);
+        }
+    });
+    shareSetting.addEventListener('change',function(){
+        listData.visibility = shareSetting.selectedIndex;
+        log(listData);
+    });
+
+    function initListView(){
+        log(listData);
+        listTitleH2.innerHTML = listData.title;
+        listData.tags = JSON.parse(listData.tags);
+        shareSetting.selectedIndex = listData.visibility;
+        renderTags();
+    }
+
     function renderTags(){
         tagContainer.innerHTML = '';
         for(i in listData.tags){
@@ -149,10 +216,6 @@ todoListCtr.ctr_list = async function(){
         } catch(err){
             return err;
         }    
-    }
-
-    function orderElements(){
-        
     }
 
     function renderElements(){
@@ -244,7 +307,43 @@ todoListCtr.ctr_list = async function(){
             log('Saving failed');
         }      
     }
-
+    async function updateList(){
+        log('Update list ran');
+        let listid = parseInt(listData.id);
+        log(listData);
+        let fetchUrl = `/api/list/${listid}`;
+        let inputData = {
+            title:listData.title,
+            tags:JSON.stringify(listData.tags),
+            visibility:JSON.stringify(listData.visibility),
+            active:JSON.stringify(listData.active)
+        }
+        log(inputData);
+        log(fetchUrl);
+        let fetchSettings = {
+            method: 'PUT',
+            body: JSON.stringify(inputData),
+            headers: {
+                'x-access-auth': localStorage.getItem('token'),
+                'Content-Type': 'application/json'
+            }
+        }
+        log(fetchSettings);
+        try {
+            let response = await fetch(fetchUrl, fetchSettings);
+            log(response.status)
+            if (response.status === 200) {
+                let data = await response.json();
+                log(data);
+                return data;
+            } else {
+                throw 'Error';
+            }
+        } catch (err) {
+            log(err);
+            return err;
+        }
+    }
     async function updateElement(elementData) {
         let elementid = parseInt(elementData.id);
         let fetchUrl = `/api/element/${elementid}`;
@@ -287,10 +386,6 @@ todoListCtr.ctr_list = async function(){
     }
 
     async function deleteElement(){
-
-    }
-
-    async function updateList(){
 
     }
 
