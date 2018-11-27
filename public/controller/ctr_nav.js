@@ -16,6 +16,10 @@ todoListCtr.ctr_nav = function() {
                 todoListCtr.view_list();
                 todoListCtr.createNavMenu();
                 break;
+            case 'view_profile':
+                todoListCtr.view_profile();
+                todoListCtr.createNavMenu();
+                break;
             default:
                 todoListCtr.view_home();
                 todoListCtr.createNavMenu();
@@ -45,7 +49,8 @@ todoListCtr.createNavMenu = function(){
     });
     navProfileBtn = generateButton('Profile','navbarBtn')
     navProfileBtn.addEventListener('click',function(){
-        alert('Booo3');
+        sessionStorage.setItem('lastVisitedPage','view_profile');
+        todoListCtr.ctr_nav();
     });
     navLogoutBtn = generateButton('Log out','navbarBtn')
     navLogoutBtn.addEventListener('click',function(){

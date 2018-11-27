@@ -133,6 +133,38 @@
         </main>
     </template>
 
+    <template id="profileTemp">
+        <nav></nav>
+        <main id="mainContent">
+            <div class="content-header">
+                <button type="button" id="openMenuBtn" class="openbtn">☰</button>
+            </div>
+            <br>
+            <div>
+                <fieldset id="createNewElementFieldset">
+                    <input type="text" id="userNameInput" placeholder="Username">
+                    <input type="text" id="fullNameInput" placeholder="Full name(not required)">
+                    <input type="text" id="emailInput" placeholder="Email">
+                    <input type="password" id="passwordInput" placeholder="New password">
+                    <button id="saveUserBtn" class="btnAdd">Save userdata</button>
+                    <button id="deleteUserBtn" class="btnAdd">Deactivate user</button>
+                </fieldset>
+                <div id="userMetrics">
+                    <p id="lastLoginP">We don't have any login data yet.</p>
+                </div>
+                <fieldset id="createNewElementFieldset">
+                        <p>Here you can subscribe to shared lists.<br>
+                            Enter userid and listid to subscribe.<br>
+                            Only shared list are accessible.
+                        </p>
+                        <input type="number" id="subUserId" placeholder="User ID">
+                        <input type="number" id="subListId" placeholder="List ID">
+                        <button id="subscribeBtn" class="btnAdd">Subscribe</button>
+                </fieldset>            
+            </div>
+        </main>
+    </template>
+
 </body>
 <script src="controller/ctr_main.js"></script>
 <script src="controller/ctr_validation.js"></script>
@@ -140,10 +172,12 @@
 <script src="controller/ctr_user.js"></script>
 <script src="controller/ctr_home.js"></script>
 <script src="controller/ctr_list.js"></script>
+<script src="controller/ctr_profile.js"></script>
 
 <script src="view/view_loginuser.js"></script>
 <script src="view/view_createuser.js"></script>
 <script src="view/view_home.js"></script>
 <script src="view/view_list.js"></script>
+<script src="view/view_profile.js"></script>
 
 </html>

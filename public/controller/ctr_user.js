@@ -33,6 +33,9 @@ todoListCtr.ctr_loginUser = function(){
                 localStorage.setItem('token', data.userData.token);
                 localStorage.setItem('userid', JSON.stringify(data.userData.userid));
                 localStorage.setItem('username', JSON.stringify(data.userData.username));
+                localStorage.setItem('fullname', JSON.stringify(data.userData.fullname));
+                localStorage.setItem('email', JSON.stringify(data.userData.email));
+                localStorage.setItem('lastlogin', JSON.stringify(data.userData.lastlogin));
                 sessionStorage.setItem('lastVisitedPage','view_home');
                 todoListCtr.ctr_nav();
             } catch (error) {

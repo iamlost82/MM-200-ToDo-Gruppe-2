@@ -35,6 +35,7 @@ router.post('/authorize', async function(req,res,next){
                 username: queryresult.return.rows[0].username,
                 fullname: queryresult.return.rows[0].fullname,
                 email: queryresult.return.rows[0].email,
+                lastlogin: queryresult.return.rows[0].lastlogin,
                 token: token
             }};
             updateLastLogin(queryresult.return.rows[0].id);

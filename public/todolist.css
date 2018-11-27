@@ -346,7 +346,11 @@ body{
     padding: 3px;
     margin-right: 0;
 }
-
+#userMetrics{
+    text-align: center;
+    font-size: 1.3em;
+    padding: 10px;
+}
 /* Content */
 
 /* Loading screen */
