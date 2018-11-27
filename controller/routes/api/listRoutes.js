@@ -48,39 +48,44 @@ router.get('/api/lists',auth, async function(req,res){
 
 router.put('/api/list/:id',auth, async function(req,res,next){
     log('Put request in list API triggered');
-    let title, tags, color, visibility, active;
-    title = tags = color = visibility = active = null;
+    log(req.body);
+    let title, tags, visibility, active;
+    title = tags = visibility = active = null;
     if(req.body.title){
         if(req.body.title.length > 0){
             title = req.body.title;
         }
     }
     if(req.body.tags){
+        log(req.body.tags);
         if(req.body.tags.length > 0){
             tags = req.body.tags;
         }
     }
     if(req.body.visibility){
+        log(req.body.visibility)
         if(req.body.visibility.length > 0){
             visibility = req.body.visibility;
         }
     }
     if(req.body.active){
+        log(req.body.active);
         if(req.body.active.length > 0){
             active = req.body.active;
         }
     }
     let query = `UPDATE "public"."lists" 
                         SET 
-                            title = $1,
-                            tags = $2,
-                            visibility = $3,
-                            active = $4
+                            "title" = $1,
+                            "tags" = $2,
+                            "visibility" = $3,
+                            "active" = $4
                         WHERE 
-                            id = $5 
+                            "id" = $5 
                         RETURNING 
                             *`;
     let queryValues = [title, tags, visibility, active, req.params.id];
+    log(queryValues);
     let queryResult = await db.update(query, queryValues);
     res.status(queryResult.status).json(queryResult.return);
 });
@@ -93,7 +98,7 @@ router.delete('/api/list/:id', auth, async function(req,res,next){
                         WHERE 
                             "id" = $1 
                         RETURNING 
-                            id,title,tags,color,created,ownerid,ownerusername,visibility,active`;
+                            *`;
     let queryValues = [req.params.id];
     let queryResult = await db.update(query, queryValues);
     res.status(queryResult.status).json(queryResult.return);
