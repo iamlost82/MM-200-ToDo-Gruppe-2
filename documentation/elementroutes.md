@@ -2,7 +2,7 @@
 
 [Back to API overview](./api.md)
 
-### Create new list
+### Create new list element
 
 * METHOD: POST
 * ENDPOINT: /api/element
@@ -169,9 +169,9 @@ or
 }
 ```
 
-### Delete excisting list
+### Delete excisting element
 
-* METHOD: PUT
+* METHOD: DELETE
 * ENDPOINT: /api/element/:id
 * AUTH:
 	* HEADER:
@@ -190,15 +190,60 @@ or
   "rowCount": 1,
   "rows": [
     {
-      "id": "2",
-      "title": "Fluffys list",
-      "tags": NULL,
-      "color": NULL,
-      "created": "2018-11-16T09:10:17.319Z",
-      "ownerid": 1,
-      "ownerusername": "fluffy",
-      "visibility": 0,
-      "active": 2
+      "id": "1",
+      "title": "Fluffys list elemenet",
+      "created": "2018-11-20T08:09:25.863Z",
+      "authorid": 1,
+      "authorusername": "fluffy",
+      "checked": null,
+      "checkedbyid": null,
+      "checkedbyusername": null,
+      "listid": 1,
+      "deadline": "2018-11-19T23:00:00.000Z"
+      "active":2
+    }
+  ]
+}
+```
+
+* RESPONSE ERROR(500)(json):
+```javascript
+{
+  "error": "Error in action on database"
+}
+```
+
+### Delete checked elements from list
+
+* METHOD: DELETE
+* ENDPOINT: /api/elements/:listid
+* AUTH:
+	* HEADER:
+        * x-access-auth: TOKEN
+    * BODY(json):
+        * ```javascript
+          {
+	        "auth":"TOKEN"
+          }
+          ```
+
+* RESPONSE SUCCESS(200)(json):
+
+```javascript
+{
+  "rowCount": 1,
+  "rows": [
+    {
+      "id": "1",
+      "title": "Fluffys list elemenet",
+      "created": "2018-11-20T08:09:25.863Z",
+      "authorid": 1,
+      "authorusername": "fluffy",
+      "checked": null,
+      "checkedbyid": null,
+      "checkedbyusername": null,
+      "listid": 1,
+      "deadline": "2018-11-19T23:00:00.000Z"
     }
   ]
 }

@@ -75,7 +75,7 @@ router.delete('/api/element/:id',auth, async function (req, res) {
 router.delete('/api/elements/:listid',auth, async function(req,res){
     log('Starting delete on completed tasks');
     let listID = req.params.listid;
-    let query = `DELETE from "public"."elements" WHERE "checked" NOT NULL AND listid = $1 RETURNING *`;
+    let query = `DELETE from "public"."elements" WHERE "checked" IS NOT NULL AND listid = $1 RETURNING *`;
     let queryValues = [listID];
     let queryResult = await db.delete(query,queryValues);
     res.status(queryResult.status).json(queryResult.return);
