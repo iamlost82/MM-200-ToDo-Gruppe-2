@@ -45,7 +45,7 @@ todoListCtr.ctr_home = async function(){
             lists.unshift(newItem.rows[0]);
             await renderLists();
         } else{
-            document.querySelector('#newListInput').placeholder = 'Dooooh';
+            document.querySelector('#newListInput').placeholder = 'Error while creating list...';
         }    
     }
 

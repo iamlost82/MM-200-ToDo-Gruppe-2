@@ -302,7 +302,7 @@ body{
     text-align: center;
 }
 #editListDiv{
-    display: block;
+    display: none;
     padding: 10px;
 }
 #editListDiv input, #editListDiv select{
@@ -314,10 +314,10 @@ body{
     border-color: #224e49;
     background-color:transparent;    
 }
-.tagContainer{
+.tagContainer, .sharedContainer{
     display: block;
 }
-.tagchip {
+.tagChip {
     display: inline-block;
     background: #aaa;
     padding: 5px 2px 5px 10px;
@@ -326,6 +326,8 @@ body{
 }
 .tagTitle{
     font-size: 13px;
+    padding-left: 5px;
+    padding-right: 5px;
 }
 .tagDismiss{
     background-color: #000000;
@@ -335,6 +337,7 @@ body{
     padding: 3px;
     margin-right: 0;
 }
+
 /* Content */
 
 /* Loading screen */

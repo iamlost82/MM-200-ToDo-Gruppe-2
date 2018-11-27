@@ -19,11 +19,17 @@ todoListCtr.ctr_list = async function(){
     let createNewElementDiv = document.querySelector('#createNewElementDiv');
     let editListDiv = document.querySelector('#editListDiv');
     let addListTagInp = document.querySelector('#addListTagInp');
+    let tagContainer = document.querySelector(".tagContainer");
     log('You are now in list with ID: '+listData.id);
     let elements = [];
     elements = await fetchElementData();
     renderElements();
-    renderTags()
+    renderTags();
+    if(JSON.parse(localStorage.getItem('userid')) !== listData.ownerid){
+        editListDiv.innerHTML = 'List options not available<br>You are not the list owner.';
+        log(JSON.parse(localStorage.getItem('userid')));
+        log(listData.ownerid);
+    }
     elementViewDiv.addEventListener('click',async function(evt){
         if(evt.target.type==='checkbox'){
             if(evt.target.checked === true){
@@ -85,15 +91,42 @@ todoListCtr.ctr_list = async function(){
         let newTag = addListTagInp.value;
         if(key === 13){
             if(newTag.length > 0){
-                listTags.push(newTag);
+                if(listData.tags === null){
+                    listData.tags = [];
+                }
+                listData.tags.push(newTag);
                 renderTags();
+                addListTagInp.value = '';
             }
         }
     });
-
+    tagContainer.addEventListener('click',function(evt){
+        if(evt.target.className === 'tagDismiss'){
+            let tagID = parseInt(evt.target.parentElement.id.slice(8));
+            listData.tags.splice(tagID,1);
+            renderTags();
+        }
+    });
     function renderTags(){
-        
-        
+        tagContainer.innerHTML = '';
+        for(i in listData.tags){
+            let tagChip = document.createElement('div');
+            let tagTitle = document.createElement('span');
+            let tagDismiss = document.createElement('span');
+
+            tagChip.className = 'tagChip';
+            tagTitle.className = 'tagTitle';
+            tagDismiss.className = 'tagDismiss';
+
+            tagChip.id = 'tagchip_' + i;
+
+            tagTitle.innerHTML = listData.tags[i];
+            tagDismiss.innerHTML = 'X';
+
+            tagChip.appendChild(tagTitle);
+            tagChip.appendChild(tagDismiss);
+            tagContainer.appendChild(tagChip);
+        }
     }
 
     async function fetchElementData(){

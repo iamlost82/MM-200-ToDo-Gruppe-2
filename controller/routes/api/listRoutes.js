@@ -29,9 +29,13 @@ router.get('/api/lists',auth, async function(req,res){
     let queryLists = `SELECT * from "public"."lists"
     LEFT JOIN "public"."subscriptions"  
         ON "public"."lists"."id" = "public"."subscriptions"."list_id" 
-        WHERE "public"."lists"."ownerid" = $1 
-        OR "public"."subscriptions".user_id = $2    
-        ORDER BY "public"."lists"."id" DESC`;
+        WHERE "public"."subscriptions"."user_id" = $1
+                AND "public"."subscriptions".permission > 0
+                AND "public"."lists"."active" = 1 
+                AND "public"."lists"."visibility" > 0
+           OR "public"."lists"."ownerid" = $2
+                AND "public"."lists"."active" = 1  
+        ORDER BY "public"."lists"."created" DESC`;
     let queryValues = [req.token.id,req.token.id];
     try{
         let queryResult = await db.select(queryLists,queryValues);

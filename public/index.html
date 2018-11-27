@@ -107,13 +107,8 @@
                 </div>
                 <div id="editListDiv">
                     <div><input type="text" id="editListTitleInp" placeholder="New list title..."></div>
-                    <div><input type="text" id="addListTagInp" placeholder="Add tag...(enter to add)"></div>
-                    <div class="tagContainer">
-                        <div class="tagchip" id='tagchip_0'>
-                            <span class="tagTitle">Shopping</span>
-                            <span class="tagDismiss">X</span>
-                        </div>
-                    </div>
+                    <div><input type="text" id="addListTagInp" placeholder="Add tag...(Press enter to add)"></div>
+                    <div class="tagContainer"></div>
                     <div>
                         <select name="listSharingSetting">
                             <option value="0">Private</option>
@@ -121,8 +116,12 @@
                             <option value="2">Public</option>
                         </select>
                     </div>
-                    <div><button type="button">Share with...</button></div>
-                    <div><button type="button">Delete checked tasks</button></div>
+                    <div>
+                        <p>Private: Only visible for you</p>
+                        <p>Shared: Users can subscribe from profile</p>
+                        <p>Public: List is searchable</p>
+                    </div>
+                    <div><button type="button">Delete completed tasks</button></div>
                     <div><button type="button">Disable list</button></div>
                     <div><button type="button">Save changes</button></div>
                 </div>
