@@ -20,6 +20,7 @@ async function runQuery(query,values){
             rows: queryResult.rows
         };
     } catch (e) { 
+        await client.end();
         response.status = 500;
         response.return = {error:'Error in action on database'};
     }
